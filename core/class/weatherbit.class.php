@@ -47,7 +47,7 @@ class weatherbit extends eqLogic {
         }
     }
 
-    public function loadCmdFromConf($_type, $_category, $_step) {
+    public function loadCmdFromConf($_type, $_step) {
   		/*create commands based on template*/
   		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $_type . '.json')) {
   			return;
@@ -63,7 +63,7 @@ class weatherbit extends eqLogic {
   		foreach ($device['commands'] as $command) {
   			$cmd = null;
         $command['logicalId'] = $_step . $command['configuration']['apiId'];
-        $command['configuration']['category'] = $_category;
+        $command['configuration']['category'] = $_type;
         $command['configuration']['step'] = $_step;
         if ($_category == 'current') {
           $list = array('wind_gust_spd','app_max_temp','app_min_temp','pop','snow_depth','dni','moon_phase','moon_phase_lunation');
@@ -151,7 +151,7 @@ class weatherbit extends eqLogic {
         foreach ($this->getCmd() as $liste_cmd) {
           switch ($liste_cmd->getConfiguration('category')) {
             case 'alerts':
-              $cmd_alerts[] = $liste_cmd->getLogicalId();
+              $cmd_alerts[] = $liste_cmd->getConfiguration('apiId');
               break;
             case 'weather':
               $cmd_weather[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
