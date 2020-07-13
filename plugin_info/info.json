@@ -1,0 +1,15 @@
+{
+	"id" : "weatherbit",
+	"name" : "Weatherbit.io",
+	"description" : "Permet de récupérer les informations météo partout dans le monde gràce au site Weatherbit.io. Retrouvez les informations par heure, par jour et le tout mis à disposition également via un panel météo complet. Des informations de qualité d'air, pollen, et autres sont aussi disponible en plus des informations météos détaillées.",
+	"licence" : "AGPL",
+	"author" : "lunarok",
+	"require" : "3.3.24",
+	"category" : "weather",
+	"display" : "panel",
+	"mobile" : "panel",
+	"language" : ["fr_FR","en_US"],
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile","v4"],
+    "changelog" : "https://lunarok.github.io/jeedom_docs/plugins/weatherbit/changelog.html",
+    "documentation" : "https://lunarok.github.io/jeedom_docs/plugins/weatherbit/"
+}

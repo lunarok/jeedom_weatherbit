@@ -1,0 +1,128 @@
+<div class="eqLogic-widget eqLogic allowResize" style="width: 380px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
+ <center class="widget-name"><a href="#eqLink#" style="font-size : 1.2em;#hideEqLogicName#"> #city# </a>
+    <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh#"><i class="fas fa-sync"></i></span>
+    </center>
+ <div style="position : relative; left : 15px;" class="tooltips" title="#collectDate#">
+    <span class="pull-left">
+        <canvas id="weatherbit#iconeid#" width="56" height="56"></canvas>
+    </span>
+    <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+        <div id="windDirection#uid#" style="width: 80px; height: 80px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#windid#"></div>
+        <div class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#sunid#">
+            <center style="position: relative;left:-2px;"><i class="fas fa-sun-o"></i></center>
+            <span style="font-size: 0.8em;position: relative;left:10px;">#sunrise# | #sunset#</span>
+        </div>
+    </div>
+    <span style="margin-left: 5px;"class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#conditionid#">  #condition# </span><br/>
+    <span style="margin-left: 5px;font-size: 0.8em;" class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#tempid#">  #temperature# °C / #humidity# % / #uvi# UV  </span></span><br/>
+    <span style="margin-left: 5px;font-size: 0.8em;" class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#pressureid#">  #windspeed# km/h | #pressure# hPa  </span>
+</div><br/>
+<div style="margin-top: -15px;">
+    <center>#forecast#</center>
+</div>
+
+<script src="plugins/weatherbit/desktop/js/skycons.js"></script>
+
+<script>
+   $color = $("span").css("color");
+  var skycons = new Skycons({'color':$color});
+
+  skycons.set('weatherbit#iconeid#', '#icone#');
+  skycons.set('weatherbit#iconeid1#', '#icone1#');
+  skycons.set('weatherbit#iconeid2#', '#icone2#');
+  skycons.set('weatherbit#iconeid3#', '#icone3#');
+  skycons.set('weatherbit#iconeid4#', '#icone4#');
+  skycons.set('weatherbit#iconeid5#', '#icone5#');
+
+  skycons.play();
+</script>
+<script>
+if ('#refresh#' != ''){
+			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
+				jeedom.cmd.execute({id: '#refresh#'});
+			});
+		}else{
+			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove();
+		}
+
+
+ if($('#windDirection#uid#').html() != undefined){
+	 new Highcharts.Chart({
+				chart: {
+					renderTo: 'windDirection#uid#',
+					type: 'gauge',
+					backgroundColor: 'transparent',
+					plotBackgroundColor: null,
+					plotBackgroundImage: null,
+					plotBorderWidth: 0,
+					plotShadow: false,
+					spacingTop: 0,
+					spacingLeft: 0,
+					spacingRight: 0,
+					spacingBottom: 0
+				},
+				title: {
+					text: null
+				},
+				credits: {
+					enabled: false
+				},
+				pane: {
+					startAngle: 0,
+					endAngle: 360,
+					background: null
+				},
+				exporting : {
+					enabled: false
+				},
+				plotOptions: {
+					series: {
+						dataLabels: {
+							enabled: false
+						}
+					},
+          gauge: {
+            dial: {
+              backgroundColor: 'red',
+              borderColor: 'red',
+            },
+            pivot: {
+              backgroundColor: 'silver'
+            }
+          }
+				},
+				yAxis: {
+					min: 0,
+					max: 360,
+					tickWidth: 2,
+					tickLength: 10,
+					tickInterval: 90,
+					lineWidth: 4,
+					labels: {
+            distance: -16,
+						formatter: function () {
+							if (this.value == 360) {
+								return '<span style="font-weight:bold;">N</span>';
+							} else if (this.value == 90) {
+								return '<span style="font-weight:bold;">E</span>';
+							} else if (this.value == 180) {
+								return '<span style="font-weight:bold;">S</span>';
+							} else if (this.value == 270) {
+								return '<span style="font-weight:bold;">W</span>';
+							}
+						}
+					},
+					title: {
+						text: null
+					}},
+					series: [{
+						name: 'Vent',
+						data: [#wind_direction#]
+					}]
+				});
+			}
+
+</script>
+
+
+</div>

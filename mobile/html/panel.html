@@ -1,0 +1,103 @@
+<script src="plugins/weatherbit/desktop/js/skycons.js"></script>
+
+<link rel="stylesheet" type="text/css" href="plugins/weatherbit/desktop/weather-icons/css/weather-icons.min.css" />
+
+<div class="container-fluid weatherbit-panel">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="btn-group" id="buttonWeatherbit">
+            </div>
+        </div>
+    </div>
+
+
+<div>
+        <center><strong> Actuellement </strong></center></br>
+        <div style="position : relative; left : 15px;">
+            <span class="pull-left">
+                <canvas id="icone-status" width="56" height="56"></canvas>
+            </span>
+            <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+                <div id="wind-status" style="width: 80px; height: 80px;"></div>
+                <center><i class="wi wi-strong-wind"></i><div class="weather-status" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
+            </div>
+            <i class="jeedom-thermo-moyen"></i><span class="weather-status" data-l1key="temperature" style="margin-left: 5px;">   </span><span class="weather-status" data-l1key="apparentTemperature" style="margin-left: 5px;font-size: 0.8em;"> </span><br/>
+            <span class="weather-status" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
+        </br>
+        <i class="wi wi-humidity"></i><span class="weather-status" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-status" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-status" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span></span><i class="wi wi-hot"></i><span class="weather-status" data-l1key="uvIndex" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
+        <i class="wi wi-barometer"></i><span class="weather-status" data-l1key="pressure" style="margin-left: 5px;font-size: 0.8em;">  </span> <i class="fas fa-flask"></i> <span class="weather-status" data-l1key="ozone" style="margin-left: 5px;font-size: 0.8em;">   </span>
+    </div>
+</div>
+
+<div>
+    <center><strong> Dans 1H </strong></center></br>
+    <div style="position : relative; left : 15px;">
+        <span class="pull-left">
+            <canvas id="icone-hour" width="56" height="56"></canvas>
+        </span>
+        <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+            <div id="wind-hour" style="width: 80px; height: 80px;"></div>
+            <center><i class="wi wi-strong-wind"></i><div class="weather-hour" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
+        </div>
+        <i class="jeedom-thermo-moyen"></i><span class="weather-hour" data-l1key="temperature" style="margin-left: 5px;">   </span><span class="weather-hour" data-l1key="apparentTemperature" style="margin-left: 5px;font-size: 0.8em;"> </span><br/>
+        <span class="weather-hour" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
+    </br>
+    <i class="wi wi-humidity"></i><span class="weather-hour" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-hour" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-hour" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span></span><i class="wi wi-hot"></i><span class="weather-hour" data-l1key="uvIndex" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
+    <i class="wi wi-barometer"></i><span class="weather-hour" data-l1key="pressure" style="margin-left: 5px;font-size: 0.8em;">  </span> <i class="fas fa-flask"></i> <span class="weather-hour" data-l1key="ozone" style="margin-left: 5px;font-size: 0.8em;">   </span>
+    </div>
+</div>
+
+<div>
+    <center><strong> Ce jour </strong></center></br>
+    <div style="position : relative; left : 15px;">
+        <span class="pull-left">
+            <canvas id="icone-day0" width="56" height="56"></canvas>
+        </span>
+        <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+            <div id="wind-day0" style="width: 80px; height: 80px;"></div>
+            <center><i class="wi wi-strong-wind"></i><div class="weather-day0" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
+        </div>
+        <i class="jeedom-thermo-moyen"></i><span class="weather-day0" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day0" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
+        <span class="weather-day0" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
+    </br>
+    <i class="wi wi-humidity"></i><span class="weather-day0" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day0" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day0" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span></span><i class="wi wi-hot"></i><span class="weather-day0" data-l1key="uvIndex" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
+    <i class="wi wi-barometer"></i><span class="weather-day0" data-l1key="pressure" style="margin-left: 5px;font-size: 0.8em;">  </span> <i class="fas fa-flask"></i> <span class="weather-day0" data-l1key="ozone" style="margin-left: 5px;font-size: 0.8em;">   </span>
+
+    <div>
+        <i class="wi wi-sunrise"></i><span class="weather-day0" data-l1key="sunriseTime" style="font-size: 0.8em;"></span><i class="wi wi-sunset"></i><span class="weather-day0" data-l1key="sunsetTime" style="font-size: 0.8em;"></span>
+    </div>
+</div>
+</div>
+
+<div>
+    <center><strong> Jour +1 </strong></center></br>
+    <div style="position : relative; left : 15px;">
+        <span class="pull-left">
+            <canvas id="icone-day1" width="56" height="56"></canvas>
+        </span>
+        <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+            <div id="wind-day1" style="width: 80px; height: 80px;"></div>
+            <center><i class="wi wi-strong-wind"></i><div class="weather-day1" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
+        </div>
+        <i class="jeedom-thermo-moyen"></i><span class="weather-day1" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day1" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
+        <span class="weather-day1" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
+    </br>
+    <i class="wi wi-humidity"></i><span class="weather-day1" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day1" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day1" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-hot"></i><span class="weather-day1" data-l1key="uvIndex" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
+    <i class="wi wi-barometer"></i><span class="weather-day1" data-l1key="pressure" style="margin-left: 5px;font-size: 0.8em;">  </span> <i class="fas fa-flask"></i> <span class="weather-day1" data-l1key="ozone" style="margin-left: 5px;font-size: 0.8em;">   </span>
+
+    <div>
+        <i class="wi wi-sunrise"></i><span class="weather-day1" data-l1key="sunriseTime" style="font-size: 0.8em;"></span><i class="wi wi-sunset"></i><span class="weather-day1" data-l1key="sunsetTime" style="font-size: 0.8em;"></span>
+    </div>
+</div>
+</div>
+
+</br>
+<div class="row">
+    <div class="col-md-12">
+        <div id="previsions">
+
+        </div>
+    </div>
+</div>
+
+<script src="core/php/getJS.php?file=plugins/weatherbit/mobile/js/panel.js"></script>
