@@ -91,7 +91,7 @@ class weatherbit extends eqLogic {
   				}
   			}
   			if ($cmd == null || !is_object($cmd)) {
-  				$cmd = new hclCmd();
+  				$cmd = new weatherbitCmd();
   				$cmd->setEqLogic_id($this->getId());
   				utils::a2o($cmd, $command);
   				$cmd->save();
