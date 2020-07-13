@@ -1,0 +1,29 @@
+{
+  "commands": [
+    {
+      "name": "Alertes",
+      "type": "info",
+      "subtype": "string",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "alerts"
+      },
+      "isVisible": 0,
+      "logicalId": "alerts"
+    },
+    {
+      "name": "Rafraichir",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fas fa-refresh\"><\/i>"
+      },
+      "configuration" : {
+        "request" : "refresh"
+      },
+      "isVisible": 1,
+      "logicalId": "refresh"
+    }
+  ]
+}

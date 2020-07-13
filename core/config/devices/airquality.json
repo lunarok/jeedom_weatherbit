@@ -1,0 +1,142 @@
+{
+  "commands": [
+    {
+      "name": "Air Quality Index",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "aqi"
+      },
+      "isVisible": 0,
+      "logicalId": "aqi"
+    },
+    {
+      "name": "O3",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "o3"
+      },
+      "isVisible": 0,
+      "unite": "µg/m³",
+      "logicalId": "o3"
+    },
+    {
+      "name": "SO2",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "so2"
+      },
+      "isVisible": 0,
+      "unite": "µg/m³",
+      "logicalId": "so2"
+    },
+    {
+      "name": "NO2",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "no2"
+      },
+      "isVisible": 0,
+      "unite": "µg/m³",
+      "logicalId": "no2"
+    },
+    {
+      "name": "CO",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "co"
+      },
+      "isVisible": 0,
+      "unite": "µg/m³",
+      "logicalId": "co"
+    },
+    {
+      "name": "PM25",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "pm25"
+      },
+      "isVisible": 0,
+      "unite": "µg/m³",
+      "logicalId": "pm25"
+    },
+    {
+      "name": "PM10",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "pm10"
+      },
+      "isVisible": 0,
+      "unite": "µg/m³",
+      "logicalId": "pm10"
+    },
+    {
+      "name": "Pollens - Arbres",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "pollen_level_tree"
+      },
+      "isVisible": 0,
+      "logicalId": "pollen_level_tree"
+    },
+    {
+      "name": "Pollens - Herbe",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "pollen_level_grass"
+      },
+      "isVisible": 0,
+      "logicalId": "pollen_level_grass"
+    },
+    {
+      "name": "Pollens - Graminés",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "pollen_level_weed"
+      },
+      "isVisible": 0,
+      "logicalId": "pollen_level_weed"
+    },
+    {
+      "name": "Pollens - Prédominant",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "predominant_pollen_type"
+      },
+      "isVisible": 0,
+      "logicalId": "predominant_pollen_type"
+    }
+  ]
+}

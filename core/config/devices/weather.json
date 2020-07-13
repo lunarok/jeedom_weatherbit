@@ -445,19 +445,6 @@
       },
       "isVisible": 0,
       "logicalId": "moon_phase_lunation"
-    },
-    {
-      "name": "Rafraichir",
-      "type": "action",
-      "subtype": "other",
-      "display": {
-        "icon": "<i class=\"fas fa-refresh\"><\/i>"
-      },
-      "configuration" : {
-        "request" : "refresh"
-      },
-      "isVisible": 1,
-      "logicalId": "refresh"
     }
   ]
 }
