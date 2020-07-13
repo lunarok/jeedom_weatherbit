@@ -1,0 +1,463 @@
+{
+  "commands": [
+    {
+      "name": "Humidité",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "rh"
+      },
+      "isVisible": 0,
+      "unite": "%",
+      "logicalId": "rh"
+    },
+    {
+      "name": "Vent - Rafales",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not current",
+        "step" : "",
+        "apiId" : "wind_gust_spd"
+      },
+      "isVisible": 0,
+      "unite": "m/s",
+      "logicalId": "wind_gust_spd"
+    },
+    {
+      "name": "Vent - Vitesse",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "wind_spd"
+      },
+      "isVisible": 0,
+      "unite": "m/s",
+      "logicalId": "wind_spd"
+    },{
+      "name": "Vent - Direction",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "wind_dir"
+      },
+      "isVisible": 0,
+      "unite": "°",
+      "logicalId": "wind_dir"
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "temp"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "temp"
+    },
+    {
+      "name": "Température - Maximale",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "daily only",
+        "step" : "",
+        "apiId" : "max_temp"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "min_temp"
+    },
+    {
+      "name": "Température - Minimale",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "daily only",
+        "step" : "",
+        "apiId" : "min_temp"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "min_temp"
+    },
+    {
+      "name": "Température Ressentie",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not daily",
+        "step" : "",
+        "apiId" : "app_temp"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "app_temp"
+    },
+    {
+      "name": "Température Ressentie - Maximale",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "daily only",
+        "step" : "",
+        "apiId" : "app_max_temp"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "app_max_temp"
+    },
+    {
+      "name": "Température Ressentie - Minimale",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "daily only",
+        "step" : "",
+        "apiId" : "app_min_temp"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "app_min_temp"
+    },
+    {
+      "name": "Précipitation - Probabilité",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not current",
+        "step" : "",
+        "apiId" : "pop"
+      },
+      "isVisible": 0,
+      "unite": "%",
+      "logicalId": "pop"
+    },
+    {
+      "name": "Précipitation - Quantité",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "daily only",
+        "step" : "",
+        "apiId" : "precip"
+      },
+      "isVisible": 0,
+      "unite": "mm",
+      "logicalId": "precip"
+    },
+    {
+      "name": "Neige - Chute",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "snow"
+      },
+      "isVisible": 0,
+      "unite": "mm",
+      "logicalId": "snow"
+    },
+    {
+      "name": "Neige - Niveau",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not current",
+        "step" : "",
+        "apiId" : "snow_depth"
+      },
+      "isVisible": 0,
+      "unite": "mm",
+      "logicalId": "snow_depth"
+    },
+    {
+      "name": "Pression",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "pres"
+      },
+      "isVisible": 0,
+      "unite": "mb",
+      "logicalId": "pres"
+    },
+    {
+      "name": "Pression - Mer",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "slp"
+      },
+      "isVisible": 0,
+      "unite": "mb",
+      "logicalId": "slp"
+    },
+    {
+      "name": "Nuages",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not current",
+        "step" : "",
+        "apiId" : "clouds"
+      },
+      "isVisible": 0,
+      "unite": "%",
+      "logicalId": "clouds"
+    },
+    {
+      "name": "Point de Rosée",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "dewpt"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "dewpt"
+    },
+    {
+      "name": "Visibilité",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "vis"
+      },
+      "isVisible": 0,
+      "unite": "mb",
+      "logicalId": "vis"
+    },
+    {
+      "name": "Temps - Icone",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not current",
+        "step" : "",
+        "apiId" : "weather::icon"
+      },
+      "isVisible": 0,
+      "unite": "%",
+      "logicalId": "weather::icon"
+    },
+    {
+      "name": "Temps - Code",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "weather::code"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "weather::code"
+    },
+    {
+      "name": "Temps - Description",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "weather::description"
+      },
+      "isVisible": 0,
+      "unite": "mb",
+      "logicalId": "weather::description"
+    },
+    {
+      "name": "Jour ou Nuit (d/n)",
+      "type": "info",
+      "subtype": "string",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "pod"
+      },
+      "isVisible": 0,
+      "logicalId": "pod"
+    },
+    {
+      "name": "UV",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "uv"
+      },
+      "isVisible": 0,
+      "logicalId": "uv"
+    },
+    {
+      "name": "Radiation Solaire",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not daily",
+        "step" : "",
+        "apiId" : "solar_rad"
+      },
+      "isVisible": 0,
+      "unite": "W/m2",
+      "logicalId": "solar_rad"
+    },
+    {
+      "name": "Radiation Solaire - Diffuse Horizontale",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not daily",
+        "step" : "",
+        "apiId" : "dhi"
+      },
+      "isVisible": 0,
+      "unite": "W/m2",
+      "logicalId": "dhi"
+    },
+    {
+      "name": "Radiation Solaire - Globale Horizontale",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not daily",
+        "step" : "",
+        "apiId" : "ghi"
+      },
+      "isVisible": 0,
+      "unite": "W/m2",
+      "logicalId": "ghi"
+    },
+    {
+      "name": "Radiation Solaire - Directe Normale",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not daily",
+        "step" : "",
+        "apiId" : "dni"
+      },
+      "isVisible": 0,
+      "unite": "W/m2",
+      "logicalId": "dni"
+    },
+    {
+      "name": "Ozone",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "not current",
+        "step" : "",
+        "apiId" : "dni"
+      },
+      "isVisible": 0,
+      "unite": "Dobson",
+      "logicalId": "dni"
+    },
+    {
+      "name": "Soleil - Lever",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "current only",
+        "step" : "",
+        "apiId" : "sunrise"
+      },
+      "isVisible": 0,
+      "logicalId": "sunrise"
+    },
+    {
+      "name": "Soleil - Coucher",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "current only",
+        "step" : "",
+        "apiId" : "dni"
+      },
+      "isVisible": 0,
+      "logicalId": "dni"
+    },
+    {
+      "name": "Soleil - Elevation",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "current only",
+        "step" : "",
+        "apiId" : "elev_angle"
+      },
+      "isVisible": 0,
+      "logicalId": "elev_angle"
+    },
+    {
+      "name": "Soleil - Angle",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "current only",
+        "step" : "",
+        "apiId" : "h_angle"
+      },
+      "isVisible": 0,
+      "logicalId": "h_angle"
+    },
+    {
+      "name": "Lune - Fraction",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "daily only",
+        "step" : "",
+        "apiId" : "moon_phase"
+      },
+      "isVisible": 0,
+      "logicalId": "moon_phase"
+    },
+    {
+      "name": "Lune - Phase",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "daily only",
+        "step" : "",
+        "apiId" : "moon_phase_lunation"
+      },
+      "isVisible": 0,
+      "logicalId": "moon_phase_lunation"
+    },
+    {
+      "name": "Rafraichir",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fas fa-refresh\"><\/i>"
+      },
+      "configuration" : {
+        "request" : "refresh"
+      },
+      "isVisible": 1,
+      "logicalId": "refresh"
+    }
+  ]
+}
