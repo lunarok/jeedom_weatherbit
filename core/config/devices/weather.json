@@ -75,7 +75,7 @@
       },
       "isVisible": 0,
       "unite": "°C",
-      "logicalId": "min_temp"
+      "logicalId": "max_temp"
     },
     {
       "name": "Température - Minimale",
@@ -147,7 +147,7 @@
       "type": "info",
       "subtype": "numeric",
       "configuration" : {
-        "category" : "daily only",
+        "category" : "",
         "step" : "",
         "apiId" : "precip"
       },
@@ -212,7 +212,7 @@
       "type": "info",
       "subtype": "numeric",
       "configuration" : {
-        "category" : "not current",
+        "category" : "",
         "step" : "",
         "apiId" : "clouds"
       },
@@ -251,7 +251,7 @@
       "type": "info",
       "subtype": "numeric",
       "configuration" : {
-        "category" : "not current",
+        "category" : "",
         "step" : "",
         "apiId" : "weather::icon"
       },
@@ -368,11 +368,11 @@
       "configuration" : {
         "category" : "not current",
         "step" : "",
-        "apiId" : "dni"
+        "apiId" : "ozone"
       },
       "isVisible": 0,
       "unite": "Dobson",
-      "logicalId": "dni"
+      "logicalId": "ozone"
     },
     {
       "name": "Soleil - Lever",
@@ -393,10 +393,10 @@
       "configuration" : {
         "category" : "current only",
         "step" : "",
-        "apiId" : "dni"
+        "apiId" : "sunset"
       },
       "isVisible": 0,
-      "logicalId": "dni"
+      "logicalId": "sunset"
     },
     {
       "name": "Soleil - Elevation",

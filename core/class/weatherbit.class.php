@@ -47,7 +47,7 @@ class weatherbit extends eqLogic {
         }
     }
 
-    public function loadCmdFromConf($_type, $_category) {
+    public function loadCmdFromConf($_type, $_category, $_step) {
   		/*create commands based on template*/
   		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $_type . '.json')) {
   			return;
@@ -62,6 +62,27 @@ class weatherbit extends eqLogic {
   		}
   		foreach ($device['commands'] as $command) {
   			$cmd = null;
+        $command['logicalId'] = $_step . $command['configuration']['apiId'];
+        $command['configuration']['category'] = $_category;
+        $command['configuration']['step'] = $_step;
+        if ($_category == 'current') {
+          $list = array('wind_gust_spd','app_max_temp','app_min_temp','pop','snow_depth','dni','moon_phase','moon_phase_lunation');
+          if (in_array($command['configuration']['apiId'], $list)) {
+            continue;
+          }
+        }
+        if ($_category == 'hourly') {
+          $list = array('max_temp','min_temp','app_max_temp','app_min_temp','sunrise','sunset','elev_angle','h_angle','moon_phase','moon_phase_lunation');
+          if (in_array($command['configuration']['apiId'], $list)) {
+            continue;
+          }
+        }
+        if ($_category == 'daily') {
+          $list = array('max_temp','min_temp','app_temp','solar_rad','dhi','ghi','dni','sunrise','sunset','elev_angle','h_angle');
+          if (in_array($command['configuration']['apiId'], $list)) {
+            continue;
+          }
+        }
   			foreach ($this->getCmd() as $liste_cmd) {
   				if ((isset($command['logicalId']) && $liste_cmd->getLogicalId() == $command['logicalId'])
   				|| (isset($command['name']) && $liste_cmd->getName() == $command['name'])) {
@@ -89,9 +110,26 @@ class weatherbit extends eqLogic {
 
     public function postUpdate() {
         if (null !== ($this->getConfiguration('geoloc', '')) && $this->getConfiguration('geoloc', '') != 'none') {
-            weatherbit::getInformations();
+          $this->loadCmdFromConf('weather', 'current');
+          $this->loadCmdFromConf('weather', 'daily1');
+          $this->loadCmdFromConf('weather', 'daily2');
+          $this->loadCmdFromConf('weather', 'daily3');
+          $this->loadCmdFromConf('weather', 'hourly1');
+          $this->loadCmdFromConf('weather', 'hourly2');
+          $this->loadCmdFromConf('weather', 'hourly3');
+          $this->loadCmdFromConf('weather', 'hourly4');
+          $this->loadCmdFromConf('weather', 'hourly5');
+          $this->loadCmdFromConf('weather', 'hourly6');
+          $this->loadCmdFromConf('weather', 'hourly6');
+          $this->loadCmdFromConf('weather', 'hourly6');
+          $this->loadCmdFromConf('alerts', 'current');
+          $this->loadCmdFromConf('airquality', 'current');
+          $this->loadCmdFromConf('airquality', 'forecast1');
+          $this->loadCmdFromConf('airquality', 'forecast2');
+          $this->loadCmdFromConf('airquality', 'forecast24');
+          weatherbit::getInformations();
         } else {
-            log::add('weatherbit', 'error', 'geoloc non saisie');
+          log::add('weatherbit', 'error', 'geoloc non saisie');
         }
     }
 
@@ -112,38 +150,25 @@ class weatherbit extends eqLogic {
         $cmd_current = $cmd_alerts = $cmd_aqi = $cmd_daily = $cmd_hourly = $cmd_foraqi = $cmd_energy = array();
         foreach ($this->getCmd() as $liste_cmd) {
           switch ($liste_cmd->getConfiguration('category')) {
-            case 'current':
-              $cmd_current[] = $liste_cmd->getLogicalId();
-              break;
             case 'alerts':
               $cmd_alerts[] = $liste_cmd->getLogicalId();
               break;
-            case 'current::airquality':
-              $cmd_aqi[] = $liste_cmd->getLogicalId();
+            case 'weather':
+              $cmd_weather[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
               break;
-            case 'forecast::daily':
-              $cmd_daily[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
-              break;
-            case 'forecast::hourly':
-              $cmd_hourly[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
-              break;
-            case 'forecast::airquality':
-              $cmd_foraqi[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
-              break;
-            case 'forecast::energy':
-              $cmd_energy[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
+            case 'airquality':
+              $cmd_aqi[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
               break;
           }
         }
-        $this->getCurrent($params, $cmd_current);
+        $this->getCurrent($params, $cmd_weather);
         $this->getAlerts($params, $cmd_alerts);
         $this->getAirquality($params, $cmd_aqi);
-        $this->getForecastDaily($params, $cmd_daily);
-        $this->getForecastHourly($param, $cmd_hourly);
-        $this->getForecastAirquality($params, $cmd_foraqi);
-        //$this->getForecastEnergy($params, $cmd_energy);
+        $this->getForecastDaily($params, $cmd_weather);
+        $this->getForecastHourly($param, $cmd_weather);
+        $this->getForecastAirquality($params, $cmd_aqi);
         $this->getUsage();
-        $this->refreshWidget();
+        //$this->refreshWidget();
     }
 
     public function setWeather($_json, $_category, $_cmdlist) {
@@ -159,7 +184,7 @@ class weatherbit extends eqLogic {
 
     public function getCurrent($_params, $_cmdlist) {
       $parsed_json = $this->callWeatherbit('current', $_params);
-      $this->checkAndUpdateCmd($parsed_json['data'], 'current', $_cmdlist);
+      $this->setWeather($parsed_json['data'], 'current', $_cmdlist['current']);
     }
 
     public function getAlerts($_params, $_cmdlist) {
@@ -173,31 +198,31 @@ class weatherbit extends eqLogic {
 
     public function getAirquality($_params, $_cmdlist) {
       $parsed_json = $this->callWeatherbit('current/airquality', $_params);
-      foreach ($_cmdlist as $value) {
-        $this->checkAndUpdateCmd($value, $parsed_json[$value]);
+      foreach ($_cmdlist['current'] as $value) {
+        $this->checkAndUpdateCmd($value, $parsed_json['data'][$value]);
       }
     }
 
     public function getForecastDaily($_params, $_cmdlist) {
       $parsed_json = $this->callWeatherbit('forecast/daily', $_params);
-      $this->checkAndUpdateCmd($parsed_json['data'][0], 'daily1', $_cmdlist);
-      $this->checkAndUpdateCmd($parsed_json['data'][1], 'daily2', $_cmdlist);
-      $this->checkAndUpdateCmd($parsed_json['data'][2], 'daily3', $_cmdlist);
+      $this->setWeather($parsed_json['data'][0], 'daily1', $_cmdlist['daily1']);
+      $this->setWeather($parsed_json['data'][1], 'daily2', $_cmdlist['daily2']);
+      $this->setWeather($parsed_json['data'][2], 'daily3', $_cmdlist['daily3']);
     }
 
     public function getForecastHourly($_params, $_cmdlist) {
       $parsed_json = $this->callWeatherbit('forecast/hourly', $_params);
-      $this->checkAndUpdateCmd($parsed_json['data'][0], 'hourly1', $_cmdlist);
-      $this->checkAndUpdateCmd($parsed_json['data'][1], 'hourly6', $_cmdlist);
-      $this->checkAndUpdateCmd($parsed_json['data'][2], 'hourly2', $_cmdlist);
-      $this->checkAndUpdateCmd($parsed_json['data'][3], 'hourly3', $_cmdlist);
-      $this->checkAndUpdateCmd($parsed_json['data'][4], 'hourly4', $_cmdlist);
-      $this->checkAndUpdateCmd($parsed_json['data'][5], 'hourly5', $_cmdlist);
+      $this->setWeather($parsed_json['data'][0], 'hourly1', $_cmdlist['hourly1']);
+      $this->setWeather($parsed_json['data'][1], 'hourly6', $_cmdlist['hourly2']);
+      $this->setWeather($parsed_json['data'][2], 'hourly2', $_cmdlist['hourly3']);
+      $this->setWeather($parsed_json['data'][3], 'hourly3', $_cmdlist['hourly4']);
+      $this->setWeather($parsed_json['data'][4], 'hourly4', $_cmdlist['hourly5']);
+      $this->setWeather($parsed_json['data'][5], 'hourly5', $_cmdlist['hourly6']);
     }
 
     public function getForecastAirquality($_params, $_cmdlist) {
       $parsed_json = $this->callWeatherbit('forecast/airquality', $_params);
-      foreach ($_cmdlist as $value) {
+      foreach ($_cmdlist['forecast1'] as $value) {
         $this->checkAndUpdateCmd('forecast1' . $value, $parsed_json[0][$value]);
         $this->checkAndUpdateCmd('forecast2' . $value, $parsed_json[1][$value]);
         $this->checkAndUpdateCmd('forecast24' . $value, $parsed_json[23][$value]);
