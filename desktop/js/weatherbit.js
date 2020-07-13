@@ -94,7 +94,7 @@ function addCmdToTable(_cmd) {
         _cmd.configuration = {};
     }
 
-    if (init(_cmd.configuration.category) == 'actual') {
+    if (init(_cmd.configuration.category) == 'current') {
         var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
         var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
         tr += '<td>';
@@ -119,7 +119,7 @@ function addCmdToTable(_cmd) {
         $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
     }
 
-    if (init(_cmd.configuration.category) == 'daily') {
+    if (init(_cmd.configuration.category) == 'daily1') {
         var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
         var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
         tr += '<td>';
@@ -144,7 +144,7 @@ function addCmdToTable(_cmd) {
         $('#24h_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
     }
 
-    if (init(_cmd.configuration.category) == 'h1') {
+    if (init(_cmd.configuration.category) == 'hourly1') {
         var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
         var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
         tr += '<td>';
@@ -169,7 +169,7 @@ function addCmdToTable(_cmd) {
         $('#h1_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
     }
 
-    if (init(_cmd.configuration.category) == 'h2') {
+    if (init(_cmd.configuration.category) == 'hourly2') {
         var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
         var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
         tr += '<td>';
@@ -194,7 +194,7 @@ function addCmdToTable(_cmd) {
         $('#h2_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
     }
 
-    if (init(_cmd.configuration.category) == 'h3') {
+    if (init(_cmd.configuration.category) == 'hourly3') {
         var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
         var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
         tr += '<td>';
@@ -219,7 +219,7 @@ function addCmdToTable(_cmd) {
         $('#h3_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
     }
 
-    if (init(_cmd.configuration.category) == 'h4') {
+    if (init(_cmd.configuration.category) == 'hourly4') {
         var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
         var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
         tr += '<td>';
@@ -244,7 +244,7 @@ function addCmdToTable(_cmd) {
         $('#h4_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
     }
 
-    if (init(_cmd.configuration.category) == 'h5') {
+    if (init(_cmd.configuration.category) == 'hourly5') {
         var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
         var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
         tr += '<td>';
