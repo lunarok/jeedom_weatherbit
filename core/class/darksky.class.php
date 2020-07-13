@@ -22,21 +22,6 @@ class weatherbit extends eqLogic {
 
     public static $_widgetPossibility = array('custom' => true);
 
-    /*public static function cron5($_eqLogic_id = null) {
-        if ($_eqLogic_id == null) {
-            $eqLogics = self::byType('weatherbit', true);
-        } else {
-            $eqLogics = array(self::byId($_eqLogic_id));
-        }
-        foreach ($eqLogics as $weatherbit) {
-            if (null !== ($weatherbit->getConfiguration('geoloc', ''))) {
-                $weatherbit->getInformations('5m');
-            } else {
-                log::add('weatherbit', 'error', 'geoloc non saisie');
-            }
-        }
-    }*/
-
     public static function cronHourly() {
         $eqLogics = self::byType('weatherbit', true);
         foreach ($eqLogics as $weatherbit) {
@@ -55,9 +40,6 @@ class weatherbit extends eqLogic {
     public static function start() {
         foreach (self::byType('weatherbit', true) as $weatherbit) {
             if (null !== ($weatherbit->getConfiguration('geoloc', ''))) {
-                /*$weatherbit->getInformations('daily');
-                $weatherbit->getInformations('hourly');
-                $weatherbit->getInformations('5m');*/
                 $weatherbit->getInformations('all');
             } else {
                 log::add('weatherbit', 'error', 'geoloc non saisie');
@@ -1892,34 +1874,46 @@ class weatherbit extends eqLogic {
         }
         $apikey = $this->getConfiguration('apikey', '');
         $lang = explode('_',config::byKey('language'));
-        $url = 'https://api.weatherbit.net/forecast/' . $apikey .'/' . $geolocval . '?units=ca&lang=' . $lang[0] . '&solar=1';
-        log::add('weatherbit', 'debug', $url);
-        $request_http = new com_http($url);
-        $request_http->setNoReportError(true);
-        $json_string = $request_http->exec(8);
-        if ($json_string == '') {
-          return;
-        }
-        //$json_string = file_get_contents($url);
-        if ($json_string === false) {
-            log::add('weatherbit', 'debug', 'Problème de chargement API');
-            return;
-        }
-        $parsed_json = json_decode($json_string, true);
-        if ($frequence == 'all' || $frequence == 'daily') {
-            $this->getDaily($parsed_json);
-        }
-        $this->getHourly($parsed_json);
+        $geo = explode(',',$geolocval);
+        $params = 'lat=' . $_lat . '&lon=' . $_lon . '&lang=' . $_lan . '&key=' . $_key;
+        $this->getCurrent($params);
+        $this->getAlert($params);
         $this->refreshWidget();
     }
 
-    public function getDaily($parsed_json) {
-        foreach ($parsed_json['daily']['data'][0] as $key => $value) {
-            if ($key == 'sunsetTime' || $key == 'sunriseTime') {
-                $value = date('Hi',$value);
-                $this->checkAndUpdateCmd($key, $value);
-            }
-        }
+    public function getCurrent($_params) {
+      $url = 'https://api.weatherbit.io/v2.0/current?' . $_params;
+      https://api.weatherbit.io/v2.0/alerts?
+      log::add('weatherbit', 'debug', $url);
+      $request_http = new com_http($url);
+      $request_http->setNoReportError(true);
+      $json_string = $request_http->exec(8);
+      if ($json_string == '') {
+        return;
+      }
+      //$json_string = file_get_contents($url);
+      if ($json_string === false) {
+          log::add('weatherbit', 'debug', 'Problème de chargement API');
+          return;
+      }
+      $parsed_json = json_decode($json_string, true);
+    }
+
+    public function getAlert($_params) {
+      $url = 'https://api.weatherbit.io/v2.0/alerts?' . $_params;
+      log::add('weatherbit', 'debug', $url);
+      $request_http = new com_http($url);
+      $request_http->setNoReportError(true);
+      $json_string = $request_http->exec(8);
+      if ($json_string == '') {
+        return;
+      }
+      //$json_string = file_get_contents($url);
+      if ($json_string === false) {
+          log::add('weatherbit', 'debug', 'Problème de chargement API');
+          return;
+      }
+      $parsed_json = json_decode($json_string, true);
     }
 
     public function getHourly($parsed_json) {
