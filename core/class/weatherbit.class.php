@@ -68,24 +68,25 @@ class weatherbit extends eqLogic {
         $command['logicalId'] = $_step . $command['configuration']['apiId'];
         $command['configuration']['category'] = $_type;
         $command['configuration']['step'] = $_step;
-        if ($_category == 'current') {
+        if (strpos($_step, 'current') !== false) {
           $list = array('wind_gust_spd','app_max_temp','app_min_temp','pop','snow_depth','dni','moon_phase','moon_phase_lunation');
           if (in_array($command['configuration']['apiId'], $list)) {
             continue;
           }
         }
-        if ($_category == 'hourly') {
+        if (strpos($_step, 'hourly') !== false) {
           $list = array('max_temp','min_temp','app_max_temp','app_min_temp','sunrise','sunset','elev_angle','h_angle','moon_phase','moon_phase_lunation');
           if (in_array($command['configuration']['apiId'], $list)) {
             continue;
           }
         }
-        if ($_category == 'daily') {
+        if (strpos($_step, 'daily') !== false) {
           $list = array('max_temp','min_temp','app_temp','solar_rad','dhi','ghi','dni','sunrise','sunset','elev_angle','h_angle');
           if (in_array($command['configuration']['apiId'], $list)) {
             continue;
           }
         }
+        log::add('weatherbit', 'debug', 'command : ' . print_r($command, true));
   			foreach ($this->getCmd() as $liste_cmd) {
   				if ((isset($command['logicalId']) && $liste_cmd->getLogicalId() == $command['logicalId'])
   				|| (isset($command['name']) && $liste_cmd->getName() == $command['name'])) {
