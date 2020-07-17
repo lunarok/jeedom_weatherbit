@@ -165,7 +165,7 @@ class weatherbit extends eqLogic {
         $this->getAlerts($params, $cmd_alerts);
         $this->getAirquality($params, $cmd_aqi);
         $this->getForecastDaily($params, $cmd_weather);
-        $this->getForecastHourly($param, $cmd_weather);
+        $this->getForecastHourly($params, $cmd_weather);
         $this->getForecastAirquality($params, $cmd_aqi);
         $this->getUsage();
         //$this->refreshWidget();
