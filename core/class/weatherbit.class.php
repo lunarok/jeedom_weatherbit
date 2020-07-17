@@ -26,11 +26,7 @@ class weatherbit extends eqLogic {
         $eqLogics = self::byType('weatherbit', true);
         foreach ($eqLogics as $weatherbit) {
             if (null !== ($weatherbit->getConfiguration('geoloc', ''))) {
-                $weatherbit->getInformations('hourly');
-                //$weatherbit->getInformations('all');
-                if (date('G')  == 3) {
-                    $weatherbit->getInformations('daily');
-                }
+                $weatherbit->getInformations();
             } else {
                 log::add('weatherbit', 'error', 'geoloc non saisie');
             }
@@ -131,7 +127,7 @@ class weatherbit extends eqLogic {
           $this->loadCmdFromConf('airquality', 'forecast1');
           $this->loadCmdFromConf('airquality', 'forecast2');
           $this->loadCmdFromConf('airquality', 'forecast24');
-          weatherbit::getInformations();
+          $this->getInformations();
         } else {
           log::add('weatherbit', 'error', 'geoloc non saisie');
         }
