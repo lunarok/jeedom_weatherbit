@@ -149,7 +149,7 @@ $eqLogics = eqLogic::byType('weatherbit');
             </div>
 
             <div class="form-group">
-              <label class="col-sm-3 control-label">{{Clef}} <a href='https://weatherbit.net/dev/' target="_blank">API DarkSky.net</a></label>
+              <label class="col-sm-3 control-label">{{Clef}} <a href='https://weatherbit.io/' target="_blank">API weatherbit.io</a></label>
               <div class="col-sm-3">
                 <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="apikey"/>
               </div>
