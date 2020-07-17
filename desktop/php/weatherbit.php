@@ -68,11 +68,14 @@ $eqLogics = eqLogic::byType('weatherbit');
   <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer"></i> {{Equipement}}</a></li>
   <li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo Actuelle}}</a></li>
       <li role="presentation"><a href="#24tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 24h}}</a></li>
+      <li role="presentation"><a href="#48tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 48h}}</a></li>
+      <li role="presentation"><a href="#72tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 72h}}</a></li>
       <li role="presentation"><a href="#1tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 1h}}</a></li>
       <li role="presentation"><a href="#2tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 2h}}</a></li>
       <li role="presentation"><a href="#3tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 3h}}</a></li>
       <li role="presentation"><a href="#4tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 4h}}</a></li>
       <li role="presentation"><a href="#5tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 5h}}</a></li>
+      <li role="presentation"><a href="#6tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 5h}}</a></li>
 </ul>
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
   <div role="tabpanel" class="tab-pane active" id="eqlogictab">

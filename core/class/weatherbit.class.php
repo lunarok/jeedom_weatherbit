@@ -63,7 +63,7 @@ class weatherbit extends eqLogic {
   		foreach ($device['commands'] as $command) {
   			$cmd = null;
         if ($_step != 'current') {
-          $command['name'] = $command['name'] . $_step;
+          $command['name'] = $command['name'] . ' ' . $_step;
         }
         $command['logicalId'] = $_step . $command['configuration']['apiId'];
         $command['configuration']['category'] = $_type;
