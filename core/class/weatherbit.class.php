@@ -112,7 +112,7 @@ class weatherbit extends eqLogic {
         }
     }
 
-    public function postUpdate() {
+    public function postAjax() {
         if (null !== ($this->getConfiguration('geoloc', '')) && $this->getConfiguration('geoloc', '') != 'none') {
           $this->loadCmdFromConf('weather', 'current');
           $this->loadCmdFromConf('weather', 'daily1');
