@@ -86,7 +86,7 @@ class weatherbit extends eqLogic {
             continue;
           }
         }
-        log::add('weatherbit', 'debug', 'command : ' . print_r($command, true));
+        //log::add('weatherbit', 'debug', 'command : ' . print_r($command, true));
   			foreach ($this->getCmd() as $liste_cmd) {
   				if ((isset($command['logicalId']) && $liste_cmd->getLogicalId() == $command['logicalId'])
   				|| (isset($command['name']) && $liste_cmd->getName() == $command['name'])) {
@@ -150,7 +150,7 @@ class weatherbit extends eqLogic {
         $apikey = $this->getConfiguration('apikey', '');
         $lang = explode('_',config::byKey('language'));
         $geo = explode(',',$geolocval);
-        $params = 'lat=' . $_lat . '&lon=' . $_lon . '&lang=' . $_lan . '&key=' . $_key;
+        $params = 'lat=' . $geo[0] . '&lon=' . $geo[1] . '&lang=' . $lang[0] . '&key=' . $apikey;
         $cmd_current = $cmd_alerts = $cmd_aqi = $cmd_daily = $cmd_hourly = $cmd_foraqi = $cmd_energy = array();
         foreach ($this->getCmd() as $liste_cmd) {
           switch ($liste_cmd->getConfiguration('category')) {
