@@ -192,6 +192,40 @@ $eqLogics = eqLogic::byType('weatherbit');
     </table>
 
   </div>
+  <div role="tabpanel" class="tab-pane" id="48tab">
+
+  <table id="48h_cmd" class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th style="width: 50px;">#</th>
+        <th style="width: 300px;">{{Nom}}</th>
+        <th style="width: 200px;">{{Paramètres}}</th>
+        <th style="width: 100px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+</div>
+<div role="tabpanel" class="tab-pane" id="72tab">
+
+<table id="72h_cmd" class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th style="width: 50px;">#</th>
+      <th style="width: 300px;">{{Nom}}</th>
+      <th style="width: 200px;">{{Paramètres}}</th>
+      <th style="width: 100px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>
+
+</div>
     <div role="tabpanel" class="tab-pane" id="1tab">
 
     <table id="h1_cmd" class="table table-bordered table-condensed">
@@ -277,6 +311,23 @@ $eqLogics = eqLogic::byType('weatherbit');
     </table>
 
   </div>
+  <div role="tabpanel" class="tab-pane" id="6tab">
+
+  <table id="h6_cmd" class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th style="width: 50px;">#</th>
+        <th style="width: 300px;">{{Nom}}</th>
+        <th style="width: 200px;">{{Paramètres}}</th>
+        <th style="width: 100px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+</div>
 </div>
 </div>
 </div>
