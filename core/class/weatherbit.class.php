@@ -176,6 +176,7 @@ class weatherbit extends eqLogic {
       foreach ($_cmdlist as $value) {
         if (in_array($value, $list)) {
           $this->checkAndUpdateCmd($_category . $value, $_json['weather'][$value]);
+          log::add('weatherbit', 'debug', 'setWeather : ' . $value . ' ' . $_json['weather'][$value]);
         } else {
           $this->checkAndUpdateCmd($_category . $value, $_json[$value]);
         }
@@ -184,7 +185,7 @@ class weatherbit extends eqLogic {
 
     public function getCurrent($_params, $_cmdlist) {
       $parsed_json = $this->callWeatherbit('current', $_params);
-      $this->setWeather($parsed_json['data'], 'current', $_cmdlist['current']);
+      $this->setWeather($parsed_json['data'][0], 'current', $_cmdlist['current']);
     }
 
     public function getAlerts($_params, $_cmdlist) {
@@ -199,7 +200,7 @@ class weatherbit extends eqLogic {
     public function getAirquality($_params, $_cmdlist) {
       $parsed_json = $this->callWeatherbit('current/airquality', $_params);
       foreach ($_cmdlist['current'] as $value) {
-        $this->checkAndUpdateCmd($value, $parsed_json['data'][$value]);
+        $this->checkAndUpdateCmd($value, $parsed_json['data'][0][$value]);
       }
     }
 
@@ -224,7 +225,6 @@ class weatherbit extends eqLogic {
       $parsed_json = $this->callWeatherbit('forecast/airquality', $_params);
       foreach ($_cmdlist['forecast1'] as $value) {
         $this->checkAndUpdateCmd('forecast1' . $value, $parsed_json['data'][0][$value]);
-        log::add('weatherbit', 'debug', 'getForecastAirquality : ' . 'forecast1' . $value . ' ' . $parsed_json['data'][0][$value]);
       }
       foreach ($_cmdlist['forecast2'] as $value) {
         $this->checkAndUpdateCmd('forecast2' . $value, $parsed_json['data'][1][$value]);
