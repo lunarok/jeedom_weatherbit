@@ -19,8 +19,7 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class weatherbit extends eqLogic {
-
-    //public static $_widgetPossibility = array('custom' => true);
+    public static $_widgetPossibility = array('custom' => true);
 
     public static function cronHourly() {
         $eqLogics = self::byType('weatherbit', true);
@@ -174,7 +173,7 @@ class weatherbit extends eqLogic {
         $this->getForecastHourly($params, $cmd_weather);
         $this->getForecastAirquality($params, $cmd_aqi);
         $this->getUsage();
-        //$this->refreshWidget();
+        $this->refreshWidget();
     }
 
     public function setWeather($_json, $_category, $_cmdlist) {
@@ -510,7 +509,7 @@ class weatherbit extends eqLogic {
         $replace['#forecast#'] = $html_forecast;
         $replace['#city#'] = $this->getName();
 
-        $temperature = $this->getCmd(null, 'temperature');
+        $temperature = $this->getCmd(null, 'currenttemp');
         $replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd()) : '';
         $replace['#tempid#'] = is_object($temperature) ? $temperature->getId() : '';
 
@@ -518,25 +517,25 @@ class weatherbit extends eqLogic {
         $replace['#conditionday#'] = is_object($conditionday) ? $conditionday->execCmd() : '';
         $replace['#conditiondayid#'] = is_object($conditionday) ? $conditionday->getId() : '';
 
-        $humidity = $this->getCmd(null, 'humidity');
+        $humidity = $this->getCmd(null, 'currentrh');
         $replace['#humidity#'] = is_object($humidity) ? $humidity->execCmd() : '';
 
-        $uvindex = $this->getCmd(null, 'uvIndex');
+        $uvindex = $this->getCmd(null, 'currentuv');
         $replace['#uvi#'] = is_object($uvindex) ? $uvindex->execCmd() : '';
 
-        $pressure = $this->getCmd(null, 'pressure');
+        $pressure = $this->getCmd(null, 'currentpres');
         $replace['#pressure#'] = is_object($pressure) ? $pressure->execCmd() : '';
         $replace['#pressureid#'] = is_object($pressure) ? $pressure->getId() : '';
 
-        $wind_speed = $this->getCmd(null, 'windSpeed');
+        $wind_speed = $this->getCmd(null, 'currentwind_spd');
         $replace['#windspeed#'] = is_object($wind_speed) ? $wind_speed->execCmd() : '';
         $replace['#windid#'] = is_object($wind_speed) ? $wind_speed->getId() : '';
 
-        $sunrise = $this->getCmd(null, 'sunriseTime');
+        $sunrise = $this->getCmd(null, 'currentsunrise');
         $replace['#sunrise#'] = is_object($sunrise) ? substr_replace($sunrise->execCmd(),':',-2,0) : '';
         $replace['#sunriseid#'] = is_object($sunrise) ? $sunrise->getId() : '';
 
-        $sunset = $this->getCmd(null, 'sunsetTime');
+        $sunset = $this->getCmd(null, 'currentsunset');
         $replace['#sunset#'] = is_object($sunset) ? substr_replace($sunset->execCmd(),':',-2,0) : '';
         $replace['#sunsetid#'] = is_object($sunset) ? $sunset->getId() : '';
 
