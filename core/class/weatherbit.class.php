@@ -586,6 +586,46 @@ class weatherbit extends eqLogic {
         return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'current', 'weatherbit')));
     }
 
+    public function getIcone($_step) {
+      $iconeCmd = $this->getCmd(null, $_step . 'weather::code');
+      $code = $iconeCmd->execCmd();
+      $iconeCmd = $this->getCmd(null, $_step . 'pod');
+      $pod = $iconeCmd->execCmd();
+      if ($code <= 203) {
+        $icone = 'thunderstorm';
+      } else if ($code <= 233) {
+        $icone = 'sleet-storm';
+      } else if ($code <= 303) {
+        $icone = 'sleet';
+      } else if ($code <= 501) {
+        $icone = 'rain';
+      } else if ($code <= 504) {
+        $icone = 'rain-wind';
+      } else if ($code <= 522) {
+        $icone = 'hail';
+      } else if ($code <= 610) {
+        $icone = 'snow';
+      } else if ($code <= 612) {
+        $icone = 'cloudy-gusts';
+      } else if ($code <= 625) {
+        $icone = 'snow';
+      } else if ($code <= 751) {
+        $icone = 'fog';
+      } else if ($code <= 800) {
+        $icone = 'sunny';
+      } else if ($code <= 804) {
+        $icone = 'cloudy';
+      } else {
+        $icone = 'rain';
+      }
+      if ($pod == 'd') {
+        $day = 'day';
+      } else {
+        $day = 'night';
+      }
+      return 'wi-' . $day . '-' . $icone;
+    }
+
 }
 
 class weatherbitCmd extends cmd {
