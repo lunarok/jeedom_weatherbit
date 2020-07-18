@@ -183,13 +183,13 @@ class weatherbit extends eqLogic {
         if (in_array($value, $list)) {
           $value2 = str_replace('weather::','',$value);
           $this->checkAndUpdateCmd($_category . $value2, $_json['weather'][$value]);
-          log::add('weatherbit', 'debug', 'setWeather : ' . $value . ' ' . $_json['weather'][$value]);
         } else {
           if ($value == 'sunrise' || $value == 'sunset') {
-            $this->checkAndUpdateCmd($_category . $value, str_replace(':','', $_json[$value]));
-          } else if ($value == 'sunrise_ts' || $value == 'sunset_ts') {
-            $value2 = str_replace('_ts','',$value);
-            $this->checkAndUpdateCmd($_category . $value2, date(Hi,$_json[$value]));
+            if ($_category == 'current') {
+              $this->checkAndUpdateCmd($_category . $value, str_replace(':','', $_json[$value]));
+            } else {
+              $this->checkAndUpdateCmd($_category . $value, date(Hi,$_json[$value . '_ts']));
+            }
           } else {
             $this->checkAndUpdateCmd($_category . $value, $_json[$value]);
           }
