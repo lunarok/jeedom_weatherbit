@@ -77,7 +77,7 @@ class weatherbit extends eqLogic {
           }
         }
         if (strpos($_step, 'daily') !== false) {
-          $list = array('max_temp','min_temp','app_temp','solar_rad','dhi','ghi','dni','sunrise','sunset','elev_angle','h_angle');
+          $list = array('max_temp','min_temp','app_temp','solar_rad','dhi','ghi','dni','elev_angle','h_angle');
           if (in_array($command['configuration']['apiId'], $list)) {
             continue;
           }
@@ -186,6 +186,9 @@ class weatherbit extends eqLogic {
         } else {
           if ($value == 'sunrise' || $value == 'sunset') {
             $this->checkAndUpdateCmd($_category . $value, str_replace(':','', $_json[$value]));
+          } else if ($value == 'sunrise_ts' || $value == 'sunset_ts') {
+            $value2 = str_replace('_ts','',$value);
+            $this->checkAndUpdateCmd($_category . $value2, date(Hi,$_json[$value]));
           } else {
             $this->checkAndUpdateCmd($_category . $value, $_json[$value]);
           }
