@@ -185,7 +185,8 @@ class weatherbit extends eqLogic {
         } else {
           if ($value == 'sunrise' || $value == 'sunset') {
             if ($_category == 'current') {
-              $this->checkAndUpdateCmd($_category . $value, str_replace(':','', $_json[$value]));
+              $sun = strtotime($_json[$value] . 'UTC');
+              $this->checkAndUpdateCmd($_category . $value, date(Hi,$sun));
             } else {
               $this->checkAndUpdateCmd($_category . $value, date(Hi,$_json[$value . '_ts']));
             }
