@@ -552,28 +552,28 @@ class weatherbit extends eqLogic {
             $replace['#collectDate#'] = '';
         }
 
-        $icone = $this->getCmd(null, 'icon');
+        $icone = $this->getCmd(null, 'currentweather::code');
         $replace['#icone#'] = $this->getIcone('current');
         $replace['#iconeid#'] = is_object($icone) ? $icone->getId() : '';
 
-        $icone1 = $this->getCmd(null, 'icon_1');
-        $replace['#icone1#'] = is_object($icone1) ? $icone1->execCmd() : '';
+        $icone1 = $this->getCmd(null, 'currentweather::code');
+        $replace['#icone1#'] = $this->getIcone('current');
         $replace['#iconeid1#'] = is_object($icone1) ? $icone1->getId() : '';
 
-        $icone2 = $this->getCmd(null, 'icon_2');
-        $replace['#icone2#'] = is_object($icone2) ? $icone2->execCmd() : '';
+        $icone2 = $this->getCmd(null, 'hourly1weather::code');
+        $replace['#icone2#'] = $this->getIcone('hourly1');
         $replace['#iconeid2#'] = is_object($icone2) ? $icone2->getId() : '';
 
-        $icone3 = $this->getCmd(null, 'icon_3');
-        $replace['#icone3#'] = is_object($icone3) ? $icone3->execCmd() : '';
+        $icone3 = $this->getCmd(null, 'daily1weather::code');
+        $replace['#icone3#'] = $this->getIcone('daily1');
         $replace['#iconeid3#'] = is_object($icone3) ? $icone3->getId() : '';
 
-        $icone4 = $this->getCmd(null, 'icon_4');
-        $replace['#icone4#'] = is_object($icone4) ? $icone4->execCmd() : '';
+        $icone4 = $this->getCmd(null, 'daily2weather::code');
+        $replace['#icone4#'] = $this->getIcone('daily2');
         $replace['#iconeid4#'] = is_object($icone4) ? $icone4->getId() : '';
 
-        $icone5 = $this->getCmd(null, 'icon_5');
-        $replace['#icone5#'] = is_object($icone5) ? $icone5->execCmd() : '';
+        $icone5 = $this->getCmd(null, 'daily3weather::code');
+        $replace['#icone5#'] = $this->getIcone('daily3');
         $replace['#iconeid5#'] = is_object($icone5) ? $icone5->getId() : '';
 
         $parameters = $this->getDisplay('parameters');
