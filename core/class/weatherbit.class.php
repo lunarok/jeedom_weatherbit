@@ -553,7 +553,7 @@ class weatherbit extends eqLogic {
         }
 
         $icone = $this->getCmd(null, 'icon');
-        $replace['#icone#'] = is_object($icone) ? $icone->execCmd() : '';
+        $replace['#icone#'] = $this->getIcone('current');
         $replace['#iconeid#'] = is_object($icone) ? $icone->getId() : '';
 
         $icone1 = $this->getCmd(null, 'icon_1');
