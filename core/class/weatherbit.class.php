@@ -172,7 +172,7 @@ class weatherbit extends eqLogic {
     }
 
     public function setWeather($_json, $_category, $_cmdlist) {
-      $list = array("icon", "code", "description");
+      $list = array("weather::icon", "weather::code", "weather::description");
       foreach ($_cmdlist as $value) {
         if (in_array($value, $list)) {
           $this->checkAndUpdateCmd($_category . $value, $_json['weather'][$value]);
@@ -200,7 +200,7 @@ class weatherbit extends eqLogic {
     public function getAirquality($_params, $_cmdlist) {
       $parsed_json = $this->callWeatherbit('current/airquality', $_params);
       foreach ($_cmdlist['current'] as $value) {
-        $this->checkAndUpdateCmd($value, $parsed_json['data'][0][$value]);
+        $this->checkAndUpdateCmd('current'.$value, $parsed_json['data'][0][$value]);
       }
     }
 
