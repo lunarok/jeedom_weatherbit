@@ -82,6 +82,12 @@ class weatherbit extends eqLogic {
             continue;
           }
         }
+        if (strpos($_step, 'forecast') !== false) {
+          $list = array('pollen_level_tree','pollen_level_grass','pollen_level_weed','predominant_pollen_type','dhi');
+          if (in_array($command['configuration']['apiId'], $list)) {
+            continue;
+          }
+        }
         //log::add('weatherbit', 'debug', 'command : ' . print_r($command, true));
   			foreach ($this->getCmd() as $liste_cmd) {
   				if ((isset($command['logicalId']) && $liste_cmd->getLogicalId() == $command['logicalId'])
