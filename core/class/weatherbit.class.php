@@ -181,7 +181,7 @@ class weatherbit extends eqLogic {
       foreach ($_cmdlist as $value) {
         if (in_array($value, $list)) {
           $value2 = str_replace('weather::','',$value);
-          $this->checkAndUpdateCmd($_category . $value2, $_json['weather'][$value]);
+          $this->checkAndUpdateCmd($_category . $value, $_json['weather'][$value2]);
         } else {
           if ($value == 'sunrise' || $value == 'sunset') {
             if ($_category == 'current') {
