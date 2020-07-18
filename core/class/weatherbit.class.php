@@ -223,9 +223,14 @@ class weatherbit extends eqLogic {
     public function getForecastAirquality($_params, $_cmdlist) {
       $parsed_json = $this->callWeatherbit('forecast/airquality', $_params);
       foreach ($_cmdlist['forecast1'] as $value) {
-        $this->checkAndUpdateCmd('forecast1' . $value, $parsed_json[0][$value]);
-        $this->checkAndUpdateCmd('forecast2' . $value, $parsed_json[1][$value]);
-        $this->checkAndUpdateCmd('forecast24' . $value, $parsed_json[23][$value]);
+        $this->checkAndUpdateCmd('forecast1' . $value, $parsed_json['data'][0][$value]);
+        log::add('weatherbit', 'debug', 'getForecastAirquality : ' . 'forecast1' . $value . ' ' . $parsed_json['data'][0][$value]);
+      }
+      foreach ($_cmdlist['forecast2'] as $value) {
+        $this->checkAndUpdateCmd('forecast2' . $value, $parsed_json['data'][1][$value]);
+      }
+      foreach ($_cmdlist['forecast24'] as $value) {
+        $this->checkAndUpdateCmd('forecast24' . $value, $parsed_json['data'][23][$value]);
       }
     }
 
