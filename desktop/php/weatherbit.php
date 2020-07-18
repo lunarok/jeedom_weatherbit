@@ -75,7 +75,7 @@ $eqLogics = eqLogic::byType('weatherbit');
       <li role="presentation"><a href="#3tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 3h}}</a></li>
       <li role="presentation"><a href="#4tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 4h}}</a></li>
       <li role="presentation"><a href="#5tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 5h}}</a></li>
-      <li role="presentation"><a href="#6tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 5h}}</a></li>
+      <li role="presentation"><a href="#6tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 6h}}</a></li>
 </ul>
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
   <div role="tabpanel" class="tab-pane active" id="eqlogictab">

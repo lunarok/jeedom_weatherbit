@@ -513,10 +513,6 @@ class weatherbit extends eqLogic {
         $replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd()) : '';
         $replace['#tempid#'] = is_object($temperature) ? $temperature->getId() : '';
 
-        $conditionday = $this->getCmd(null, 'summaryhours');
-        $replace['#conditionday#'] = is_object($conditionday) ? $conditionday->execCmd() : '';
-        $replace['#conditiondayid#'] = is_object($conditionday) ? $conditionday->getId() : '';
-
         $humidity = $this->getCmd(null, 'currentrh');
         $replace['#humidity#'] = is_object($humidity) ? $humidity->execCmd() : '';
 
@@ -528,7 +524,7 @@ class weatherbit extends eqLogic {
         $replace['#pressureid#'] = is_object($pressure) ? $pressure->getId() : '';
 
         $wind_speed = $this->getCmd(null, 'currentwind_spd');
-        $replace['#windspeed#'] = is_object($wind_speed) ? $wind_speed->execCmd() : '';
+        $replace['#windspeed#'] = is_object($wind_speed) ? $wind_speed->execCmd() * 3.6 : '';
         $replace['#windid#'] = is_object($wind_speed) ? $wind_speed->getId() : '';
 
         $sunrise = $this->getCmd(null, 'currentsunrise');
@@ -539,27 +535,25 @@ class weatherbit extends eqLogic {
         $replace['#sunset#'] = is_object($sunset) ? substr_replace($sunset->execCmd(),':',-2,0) : '';
         $replace['#sunsetid#'] = is_object($sunset) ? $sunset->getId() : '';
 
-        $wind_direction = $this->getCmd(null, 'windBearing');
+        $wind_direction = $this->getCmd(null, 'currentwind_dir');
         $replace['#wind_direction#'] = is_object($wind_direction) ? $wind_direction->execCmd() : 0;
 
         $refresh = $this->getCmd(null, 'refresh');
         $replace['#refresh#'] = is_object($refresh) ? $refresh->getId() : '';
 
-        $condition = $this->getCmd(null, 'summary');
-        $icone = $this->getCmd(null, 'icon');
+        $condition = $this->getCmd(null, 'currentweather::description');
         if (is_object($condition)) {
-            $replace['#iconeid#'] = $icone->getId();
             $replace['#condition#'] = $condition->execCmd();
             $replace['#conditionid#'] = $condition->getId();
             $replace['#collectDate#'] = $condition->getCollectDate();
         } else {
-            $replace['#icone#'] = '';
             $replace['#condition#'] = '';
             $replace['#collectDate#'] = '';
         }
 
         $icone = $this->getCmd(null, 'icon');
         $replace['#icone#'] = is_object($icone) ? $icone->execCmd() : '';
+        $replace['#iconeid#'] = is_object($icone) ? $icone->getId() : '';
 
         $icone1 = $this->getCmd(null, 'icon_1');
         $replace['#icone1#'] = is_object($icone1) ? $icone1->execCmd() : '';
