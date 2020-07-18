@@ -252,7 +252,7 @@ class weatherbit extends eqLogic {
           log::add('weatherbit', 'debug', 'Problème de chargement API');
           return;
       }
-      log::add('weatherbit', 'debug', 'result : ' . $url);
+      log::add('weatherbit', 'debug', 'result : ' . $json_string);
       return json_decode($json_string, true);
     }
 
