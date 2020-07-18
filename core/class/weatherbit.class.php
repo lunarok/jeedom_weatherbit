@@ -240,7 +240,7 @@ class weatherbit extends eqLogic {
 
     public function callWeatherbit($_uri, $_params) {
       $url = 'https://api.weatherbit.io/v2.0/' . $_uri . '?' . $_params;
-      log::add('weatherbit', 'debug', $url);
+      log::add('weatherbit', 'debug', 'url : ' . $url);
       $request_http = new com_http($url);
       $request_http->setNoReportError(true);
       $json_string = $request_http->exec(8);
@@ -252,6 +252,7 @@ class weatherbit extends eqLogic {
           log::add('weatherbit', 'debug', 'Problème de chargement API');
           return;
       }
+      log::add('weatherbit', 'debug', 'result : ' . $url);
       return json_decode($json_string, true);
     }
 
