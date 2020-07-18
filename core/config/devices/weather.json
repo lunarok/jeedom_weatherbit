@@ -249,7 +249,7 @@
     {
       "name": "Temps - Icone",
       "type": "info",
-      "subtype": "numeric",
+      "subtype": "string",
       "configuration" : {
         "category" : "",
         "step" : "",
@@ -275,7 +275,7 @@
     {
       "name": "Temps - Description",
       "type": "info",
-      "subtype": "numeric",
+      "subtype": "string",
       "configuration" : {
         "category" : "",
         "step" : "",
