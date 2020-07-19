@@ -287,39 +287,22 @@ class weatherbit extends eqLogic {
 
     public function loadingData($eqlogic) {
         $return = array();
-        $weatherbit = weatherbit::byId($eqlogic);
-        if ($weatherbit->getConfiguration('geoloc') == 'jeedom') {
-            $geolocval = config::byKey('info::latitude') . ',' . config::byKey('info::longitude');
-        } else {
-            $geolocval = geotravCmd::byEqLogicIdAndLogicalId($weatherbit->getConfiguration('geoloc'),'location:coordinate')->execCmd();
-        }
-        $apikey = $weatherbit->getConfiguration('apikey', '');
-        $lang = explode('_',config::byKey('language'));
-        $url = 'https://api.weatherbit.net/forecast/' . $apikey .'/' . trim($geolocval) . '?units=ca&lang=' . $lang[0] . '&solar=1';
-        log::add('weatherbit', 'debug', $url);
-        $request_http = new com_http($url);
-        $request_http->setNoReportError(true);
-        $json_string = $request_http->exec(8);
-        if ($json_string == '') {
-          return;
-        }
-        //$json_string = file_get_contents($url);
-        $parsed_json = json_decode($json_string, true);
+        $parsed_json = $this->callWeatherbit('forecast/hourly', $_params);
         //log::add('weatherbit', 'debug', print_r($json_string, true));
         //log::add('weatherbit', 'debug', print_r($parsed_json, true));
         //log::add('weatherbit', 'debug', print_r($parsed_json['currently'], true));
 
         foreach ($parsed_json['hourly']['data'] as $value) {
             $return['previsions']['time'][] = $value['time'] . '000';
-            $return['previsions']['temperature'][] = $value['temperature'];
-            $return['previsions']['precipIntensity'][] = $value['precipIntensity'];
-            $return['previsions']['windSpeed'][] = $value['windSpeed'];
-            $return['previsions']['pressure'][] = $value['pressure'];
-            $return['previsions']['uvIndex'][] = $value['uvIndex'];
+            $return['previsions']['temperature'][] = $value['temp'];
+            $return['previsions']['precipIntensity'][] = $value['precip'];
+            $return['previsions']['windSpeed'][] = $value['wind_spd'];
+            $return['previsions']['pressure'][] = $value['pres'];
+            $return['previsions']['uvIndex'][] = $value['uv'];
         }
 
         $return['status'] = array(
-            'summary' => $parsed_json['currently']['summary'],
+            'summary' => $parsed_json['currently']['description'],
             'icon' => $parsed_json['currently']['icon'],
             'temperature' => $parsed_json['currently']['temperature'] . '°C',
             'apparentTemperature' => '(' . $parsed_json['currently']['apparentTemperature'] . '°C)',
@@ -414,57 +397,6 @@ class weatherbit extends eqLogic {
             'sunriseTime' => date('H:i',$parsed_json['daily']['data']['3']['sunriseTime']),
             'sunsetTime' => date('H:i',$parsed_json['daily']['data']['3']['sunsetTime']),
             'uvIndex' => $parsed_json['daily']['data']['3']['uvIndex'],
-        );
-
-        $return['day4'] = array(
-            'summary' => $parsed_json['daily']['data']['4']['summary'],
-            'icon' => $parsed_json['daily']['data']['4']['icon'],
-            'temperatureMin' => $parsed_json['daily']['data']['4']['temperatureMin'] . '°C',
-            'temperatureMax' => $parsed_json['daily']['data']['4']['temperatureMax'] . '°C',
-            'humidity' => $parsed_json['daily']['data']['4']['humidity']*100 . '%',
-            'precipProbability' => $parsed_json['daily']['data']['4']['precipProbability']*100 . '%',
-            'windSpeed' => $parsed_json['daily']['data']['4']['windSpeed'] . 'km/h',
-            'windBearing' => $parsed_json['daily']['data']['4']['windBearing'] > 179 ? $parsed_json['daily']['data']['4']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['4']['windBearing'] + 180,
-            'cloudCover' => $parsed_json['daily']['data']['4']['cloudCover']*100 . '%',
-            'pressure' => $parsed_json['daily']['data']['4']['pressure'] . 'hPa',
-            'ozone' => $parsed_json['daily']['data']['4']['ozone'] . 'DU',
-            'sunriseTime' => date('H:i',$parsed_json['daily']['data']['4']['sunriseTime']),
-            'sunsetTime' => date('H:i',$parsed_json['daily']['data']['4']['sunsetTime']),
-            'uvIndex' => $parsed_json['daily']['data']['4']['uvIndex'],
-        );
-
-        $return['day5'] = array(
-            'summary' => $parsed_json['daily']['data']['5']['summary'],
-            'icon' => $parsed_json['daily']['data']['5']['icon'],
-            'temperatureMin' => $parsed_json['daily']['data']['5']['temperatureMin'] . '°C',
-            'temperatureMax' => $parsed_json['daily']['data']['5']['temperatureMax'] . '°C',
-            'humidity' => $parsed_json['daily']['data']['5']['humidity']*100 . '%',
-            'precipProbability' => $parsed_json['daily']['data']['5']['precipProbability']*100 . '%',
-            'windSpeed' => $parsed_json['daily']['data']['5']['windSpeed'] . 'km/h',
-            'windBearing' => $parsed_json['daily']['data']['5']['windBearing'] > 179 ? $parsed_json['daily']['data']['5']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['5']['windBearing'] + 180,
-            'cloudCover' => $parsed_json['daily']['data']['5']['cloudCover']*100 . '%',
-            'pressure' => $parsed_json['daily']['data']['5']['pressure'] . 'hPa',
-            'ozone' => $parsed_json['daily']['data']['5']['ozone'] . 'DU',
-            'sunriseTime' => date('H:i',$parsed_json['daily']['data']['5']['sunriseTime']),
-            'sunsetTime' => date('H:i',$parsed_json['daily']['data']['5']['sunsetTime']),
-            'uvIndex' => $parsed_json['daily']['data']['5']['uvIndex'],
-        );
-
-        $return['day6'] = array(
-            'summary' => $parsed_json['daily']['data']['6']['summary'],
-            'icon' => $parsed_json['daily']['data']['6']['icon'],
-            'temperatureMin' => $parsed_json['daily']['data']['6']['temperatureMin'] . '°C',
-            'temperatureMax' => $parsed_json['daily']['data']['6']['temperatureMax'] . '°C',
-            'humidity' => $parsed_json['daily']['data']['6']['humidity']*100 . '%',
-            'precipProbability' => $parsed_json['daily']['data']['6']['precipProbability']*100 . '%',
-            'windSpeed' => $parsed_json['daily']['data']['6']['windSpeed'] . 'km/h',
-            'windBearing' => $parsed_json['daily']['data']['6']['windBearing'] > 179 ? $parsed_json['daily']['data']['6']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['6']['windBearing'] + 180,
-            'cloudCover' => $parsed_json['daily']['data']['6']['cloudCover']*100 . '%',
-            'pressure' => $parsed_json['daily']['data']['6']['pressure'] . 'hPa',
-            'ozone' => $parsed_json['daily']['data']['6']['ozone'] . 'DU',
-            'sunriseTime' => date('H:i',$parsed_json['daily']['data']['6']['sunriseTime']),
-            'sunsetTime' => date('H:i',$parsed_json['daily']['data']['6']['sunsetTime']),
-            'uvIndex' => $parsed_json['daily']['data']['6']['uvIndex'],
         );
 
         return $return;

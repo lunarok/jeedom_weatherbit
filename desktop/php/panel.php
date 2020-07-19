@@ -165,79 +165,6 @@ if (!isConnect()) {
 </div>
 </div>
 </div>
-</br>
-<div class="row">
-	<div class="col-md-4">
-		<center><strong> Jour +4 </strong></center></br>
-		<div style="position : relative; left : 15px;">
-			<span class="pull-left">
-				<canvas id="icone-day4" width="56" height="56"></canvas>
-			</span>
-
-			<div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-				<div id="wind-day4" style="width: 80px; height: 80px;"></div>
-				<center><i class="wi wi-strong-wind"></i><div class="weather-day4" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
-			</div>
-			<i class="jeedom-thermo-moyen"></i><span class="weather-day4" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day4" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
-			<span class="weather-day4" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
-		</br>
-		<i class="wi wi-humidity"></i><span class="weather-day4" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day4" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day4" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span></span><i class="wi wi-hot"></i><span class="weather-day4" data-l1key="uvIndex" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
-		<i class="wi wi-barometer"></i><span class="weather-day4" data-l1key="pressure" style="margin-left: 5px;font-size: 0.8em;">  </span> <i class="fas fa-flask"></i> <span class="weather-day4" data-l1key="ozone" style="margin-left: 5px;font-size: 0.8em;">   </span>
-
-		<div>
-			<i class="wi wi-sunrise"></i><span class="weather-day4" data-l1key="sunriseTime" style="font-size: 0.8em;"></span><i class="wi wi-sunset"></i><span class="weather-day4" data-l1key="sunsetTime" style="font-size: 0.8em;"></span>
-		</div>
-	</div>
-</div>
-<div class="col-md-4">
-	<center><strong> Jour +5 </strong></center></br>
-	<div style="position : relative; left : 15px;">
-		<span class="pull-left">
-			<canvas id="icone-day5" width="56" height="56"></canvas>
-		</span>
-
-		<div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-			<div id="wind-day5" style="width: 80px; height: 80px;"></div>
-			<center><i class="wi wi-strong-wind"></i><div class="weather-day5" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
-		</div>
-		<i class="jeedom-thermo-moyen"></i><span class="weather-day5" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day5" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
-		<span class="weather-day5" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
-	</br>
-	<i class="wi wi-humidity"></i><span class="weather-day5" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day5" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day5" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span></span><i class="wi wi-hot"></i><span class="weather-day5" data-l1key="uvIndex" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
-	<i class="wi wi-barometer"></i><span class="weather-day5" data-l1key="pressure" style="margin-left: 5px;font-size: 0.8em;">  </span> <i class="fas fa-flask"></i> <span class="weather-day5" data-l1key="ozone" style="margin-left: 5px;font-size: 0.8em;">   </span>
-
-	<div>
-		<i class="wi wi-sunrise"></i><span class="weather-day5" data-l1key="sunriseTime" style="font-size: 0.8em;"></span><i class="wi wi-sunset"></i><span class="weather-day5" data-l1key="sunsetTime" style="font-size: 0.8em;"></span>
-	</div>
-</div>
-</div>
-<div class="col-md-4">
-	<center><strong> Jour +6 </strong></center></br>
-	<div style="position : relative; left : 15px;">
-		<span class="pull-left">
-			<canvas id="icone-day6" width="56" height="56"></canvas>
-		</span>
-
-		<div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-			<div id="wind-day6" style="width: 80px; height: 80px;"></div>
-			<center><i class="wi wi-strong-wind"></i><div class="weather-day6" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
-		</div>
-		<i class="jeedom-thermo-moyen"></i><span class="weather-day6" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day6" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
-		<span class="weather-day6" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
-	</br>
-	<i class="wi wi-humidity"></i><span class="weather-day6" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day6" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day6" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span></span><i class="wi wi-hot"></i><span class="weather-day6" data-l1key="uvIndex" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
-	<i class="wi wi-barometer"></i><span class="weather-day6" data-l1key="pressure" style="margin-left: 5px;font-size: 0.8em;">  </span> <i class="fas fa-flask"></i> <span class="weather-day6" data-l1key="ozone" style="margin-left: 5px;font-size: 0.8em;">   </span>
-
-	<div>
-		<i class="wi wi-sunrise"></i><span class="weather-day6" data-l1key="sunriseTime" style="font-size: 0.8em;"></span><i class="wi wi-sunset"></i><span class="weather-day6" data-l1key="sunsetTime" style="font-size: 0.8em;"></span>
-	</div>
-</div>
-</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-	</div>
-</div>
 </div>
 
 <script>
@@ -298,17 +225,7 @@ $(function () {
 		for (var i in data.result.day3) {
 			$('.weather-day3[data-l1key=' + i + ']').value(data.result.day3[i]);
 		}
-		$('.weather-day4').value('');
-		for (var i in data.result.day4) {
-			$('.weather-day4[data-l1key=' + i + ']').value(data.result.day4[i]);
-		}
-		$('.weather-day5').value('');
-		for (var i in data.result.day5) {
-			$('.weather-day5[data-l1key=' + i + ']').value(data.result.day5[i]);
-		}
-		$('.weather-day6').value('');
-		for (var i in data.result.day6) {
-			$('.weather-day6[data-l1key=' + i + ']').value(data.result.day6[i]);
+
 		}
 
 		$color = $("span").css("color");
@@ -319,9 +236,6 @@ $(function () {
 		skycons.set('icone-day1', data.result.day1.icon);
 		skycons.set('icone-day2', data.result.day2.icon);
 		skycons.set('icone-day3', data.result.day3.icon);
-		skycons.set('icone-day4', data.result.day4.icon);
-		skycons.set('icone-day5', data.result.day5.icon);
-		skycons.set('icone-day6', data.result.day6.icon);
 		skycons.play();
 
 		roseTrace('wind-status',data.result.status.windBearing);
@@ -330,9 +244,6 @@ $(function () {
 		roseTrace('wind-day1',data.result.day1.windBearing);
 		roseTrace('wind-day2',data.result.day2.windBearing);
 		roseTrace('wind-day3',data.result.day3.windBearing);
-		roseTrace('wind-day4',data.result.day4.windBearing);
-		roseTrace('wind-day5',data.result.day5.windBearing);
-		roseTrace('wind-day6',data.result.day6.windBearing);
 
 		//console.log(data.result.temp.value);
 
