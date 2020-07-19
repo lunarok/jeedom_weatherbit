@@ -226,8 +226,6 @@ $(function () {
 			$('.weather-day3[data-l1key=' + i + ']').value(data.result.day3[i]);
 		}
 
-		}
-
 		$color = $("span").css("color");
 		var skycons = new Skycons({'color':$color});
 		skycons.set('icone-status', data.result.status.icon);

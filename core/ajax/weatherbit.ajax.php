@@ -33,7 +33,11 @@ try {
     } else {
       $value = init('value');
     }
-    ajax::success(weatherbit::loadingData($value));
+    $eqLogic = eqLogic::byId(init('id'));
+    if (!is_object($eqLogic)) {
+      return true;
+    }
+    ajax::success($eqLogic->loadingData());
   }
 
   if (init('action') == 'getWeatherbit') {
