@@ -509,7 +509,7 @@ class weatherbit extends eqLogic {
                   $step = 'daily3';
                 }
 
-                if ($i == 0) {
+                if ($i == 2) {
                   $replace['#day#'] = '+ 1h';
                   $temperature_min = $this->getCmd(null, $step . 'temp');
                   $replace['#low_temperature#'] = is_object($temperature_min) ? round($temperature_min->execCmd()) : '';
@@ -578,9 +578,8 @@ class weatherbit extends eqLogic {
             $replace['#collectDate#'] = '';
         }
 
-        $icone = $this->getCmd(null, 'currentweather::icon');
         $replace['#icone#'] = $this->getIcone('current');
-        $replace['#iconeid#'] = is_object($icone) ? $icone->getId() : '';
+        $replace['#iconeid#'] = $this->getId();
 
         $icone1 = $this->getCmd(null, 'currentweather::code');
         $replace['#icone1#'] = $this->getIcone('current');
