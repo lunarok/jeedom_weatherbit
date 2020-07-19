@@ -445,6 +445,30 @@
       },
       "isVisible": 0,
       "logicalId": "moon_phase_lunation"
+    },
+    {
+      "name": "Lune - Lever",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "daily only",
+        "step" : "",
+        "apiId" : "moonrise_ts"
+      },
+      "isVisible": 0,
+      "logicalId": "moonrise_ts"
+    },
+    {
+      "name": "Lune - Coucher",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "daily only",
+        "step" : "",
+        "apiId" : "moonset_ts"
+      },
+      "isVisible": 0,
+      "logicalId": "moonset_ts"
     }
   ]
 }

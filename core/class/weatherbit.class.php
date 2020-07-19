@@ -64,13 +64,13 @@ class weatherbit extends eqLogic {
         $command['configuration']['category'] = $_type;
         $command['configuration']['step'] = $_step;
         if (strpos($_step, 'current') !== false) {
-          $list = array('wind_gust_spd','app_max_temp','app_min_temp','pop','snow_depth','dni','moon_phase','moon_phase_lunation');
+          $list = array('wind_gust_spd','app_max_temp','app_min_temp','pop','snow_depth','dni','moon_phase','moon_phase_lunation','moonrise_ts','moonset_ts');
           if (in_array($command['configuration']['apiId'], $list)) {
             continue;
           }
         }
         if (strpos($_step, 'hourly') !== false) {
-          $list = array('max_temp','min_temp','app_max_temp','app_min_temp','sunrise','sunset','elev_angle','h_angle','moon_phase','moon_phase_lunation');
+          $list = array('max_temp','min_temp','app_max_temp','app_min_temp','sunrise','sunset','elev_angle','h_angle','moon_phase','moon_phase_lunation','moonrise_ts','moonset_ts');
           if (in_array($command['configuration']['apiId'], $list)) {
             continue;
           }
@@ -118,8 +118,13 @@ class weatherbit extends eqLogic {
           $cmds = $this->getCmd();
           if (count($cmds) > 0) {
             //
+            $this->loadCmdFromConf('weather', 'daily0');
+            $this->loadCmdFromConf('weather', 'daily1');
+            $this->loadCmdFromConf('weather', 'daily2');
+            $this->loadCmdFromConf('weather', 'daily3');
           } else {
             $this->loadCmdFromConf('weather', 'current');
+            $this->loadCmdFromConf('weather', 'daily0');
             $this->loadCmdFromConf('weather', 'daily1');
             $this->loadCmdFromConf('weather', 'daily2');
             $this->loadCmdFromConf('weather', 'daily3');
@@ -195,7 +200,9 @@ class weatherbit extends eqLogic {
             } else {
               $this->checkAndUpdateCmd($_category . $value, date(Hi,$_json[$value . '_ts']));
             }
-          } else {
+          } else if ($value == 'moonrise_ts' || $value == 'moonset_ts') {
+            $this->checkAndUpdateCmd($_category . $value, date(Hi,$_json[$value]));
+          }else {
             $this->checkAndUpdateCmd($_category . $value, $_json[$value]);
           }
         }
@@ -225,9 +232,10 @@ class weatherbit extends eqLogic {
 
     public function getForecastDaily($_params, $_cmdlist) {
       $parsed_json = $this->callWeatherbit('forecast/daily', $_params);
-      $this->setWeather($parsed_json['data'][0], 'daily1', $_cmdlist['daily1']);
-      $this->setWeather($parsed_json['data'][1], 'daily2', $_cmdlist['daily2']);
-      $this->setWeather($parsed_json['data'][2], 'daily3', $_cmdlist['daily3']);
+      $this->setWeather($parsed_json['data'][0], 'daily0', $_cmdlist['daily0']);
+      $this->setWeather($parsed_json['data'][1], 'daily1', $_cmdlist['daily1']);
+      $this->setWeather($parsed_json['data'][2], 'daily2', $_cmdlist['daily2']);
+      $this->setWeather($parsed_json['data'][3], 'daily3', $_cmdlist['daily3']);
     }
 
     public function getForecastHourly($_params, $_cmdlist) {
@@ -497,10 +505,10 @@ class weatherbit extends eqLogic {
             for ($i = 0; $i < 5; $i++) {
                 if ($i == 0) {
                   $replace['#day#'] = "Aujourd'hui";
-                  $temperature_min = $this->getCmd(null, 'currentmin_temp');
+                  $temperature_min = $this->getCmd(null, 'daily0tmin_temp');
                   $replace['#low_temperature#'] = is_object($temperature_min) ? round($temperature_min->execCmd()) : '';
 
-                  $temperature_max = $this->getCmd(null, 'currentmax_temp');
+                  $temperature_max = $this->getCmd(null, 'daily0max_temp');
                   $replace['#hight_temperature#'] = is_object($temperature_max) ? round($temperature_max->execCmd()) : '';
                   $replace['#tempid#'] = is_object($temperature_max) ? $temperature_max->getId() : '';
                 } else if ($i == 1) {

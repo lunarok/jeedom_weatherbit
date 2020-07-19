@@ -67,6 +67,7 @@ $eqLogics = eqLogic::byType('weatherbit');
   <li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
   <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer"></i> {{Equipement}}</a></li>
   <li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo Actuelle}}</a></li>
+      <li role="presentation"><a href="#0tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo Aujourd'hui}}</a></li>
       <li role="presentation"><a href="#24tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 24h}}</a></li>
       <li role="presentation"><a href="#48tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 48h}}</a></li>
       <li role="presentation"><a href="#72tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Météo 72h}}</a></li>
@@ -192,6 +193,23 @@ $eqLogics = eqLogic::byType('weatherbit');
     </table>
 
   </div>
+  <div role="tabpanel" class="tab-pane" id="0tab">
+
+  <table id="0h_cmd" class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th style="width: 50px;">#</th>
+        <th style="width: 300px;">{{Nom}}</th>
+        <th style="width: 200px;">{{Paramètres}}</th>
+        <th style="width: 100px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+</div>
   <div role="tabpanel" class="tab-pane" id="48tab">
 
   <table id="48h_cmd" class="table table-bordered table-condensed">

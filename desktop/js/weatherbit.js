@@ -119,6 +119,31 @@ function addCmdToTable(_cmd) {
         $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
     }
 
+    if (init(_cmd.configuration.step) == 'daily0') {
+        var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
+        var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
+        tr += '<td>';
+        tr += '<span class="cmdAttr" data-l1key="id"></span>';
+        tr += '</td>';
+        tr += '<td>';
+        tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
+        tr += '<td>';
+        if (init(_cmd.subType) == "numeric") {
+            tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+        }
+        tr += '</td>';
+        tr += '<td>';
+        if (is_numeric(_cmd.id)) {
+            tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fas fa-cogs"></i></a> ';
+            tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fas fa-rss"></i> {{Tester}}</a>';
+        }
+        tr += '<i class="fas fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i></td>';
+        tr += '</td>';
+        tr += '</tr>';
+        $('#0h_cmd tbody').append(tr);
+        $('#0h_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+    }
+
     if (init(_cmd.configuration.step) == 'daily1' || init(_cmd.configuration.step) == 'forecast24') {
         var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
         var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
