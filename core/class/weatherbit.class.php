@@ -312,7 +312,7 @@ class weatherbit extends eqLogic {
         $return['status'] = array(
           'summary' => $replace['#description#'],
           'icon' => $replace['#icone#'],
-          'temperature' => $$replace['#temp#'] . '°C',
+          'temperature' => $replace['#temp#'] . '°C',
           'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
           'humidity' => $replace['#humidity#'] . '%',
           'precipProbability' => $replace['#pop#'] . '%',
@@ -328,7 +328,7 @@ class weatherbit extends eqLogic {
         $return['hour'] = array(
           'summary' => $replace['#description#'],
           'icon' => $replace['#icone#'],
-          'temperature' => $$replace['#temp#'] . '°C',
+          'temperature' => $replace['#temp#'] . '°C',
           'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
           'humidity' => $replace['#humidity#'] . '%',
           'precipProbability' => $replace['#pop#'] . '%',
@@ -344,7 +344,7 @@ class weatherbit extends eqLogic {
         $return['day0'] = array(
           'summary' => $replace['#description#'],
           'icon' => $replace['#icone#'],
-          'temperature' => $$replace['#temp#'] . '°C',
+          'temperature' => $replace['#temp#'] . '°C',
           'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
           'humidity' => $replace['#humidity#'] . '%',
           'precipProbability' => $replace['#pop#'] . '%',
@@ -364,7 +364,7 @@ class weatherbit extends eqLogic {
         $return['day1'] = array(
           'summary' => $replace['#description#'],
           'icon' => $replace['#icone#'],
-          'temperature' => $$replace['#temp#'] . '°C',
+          'temperature' => $replace['#temp#'] . '°C',
           'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
           'humidity' => $replace['#humidity#'] . '%',
           'precipProbability' => $replace['#pop#'] . '%',
@@ -384,7 +384,7 @@ class weatherbit extends eqLogic {
         $return['day2'] = array(
           'summary' => $replace['#description#'],
           'icon' => $replace['#icone#'],
-          'temperature' => $$replace['#temp#'] . '°C',
+          'temperature' => $replace['#temp#'] . '°C',
           'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
           'humidity' => $replace['#humidity#'] . '%',
           'precipProbability' => $replace['#pop#'] . '%',
@@ -404,7 +404,7 @@ class weatherbit extends eqLogic {
         $return['day3'] = array(
           'summary' => $replace['#description#'],
           'icon' => $replace['#icone#'],
-          'temperature' => $$replace['#temp#'] . '°C',
+          'temperature' => $replace['#temp#'] . '°C',
           'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
           'humidity' => $replace['#humidity#'] . '%',
           'precipProbability' => $replace['#pop#'] . '%',
@@ -432,7 +432,7 @@ class weatherbit extends eqLogic {
         $replace['#temp#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
         $cmd = $this->getCmd(null, $_step . 'app_temp');
         $replace['#app_temp#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
-        $cmd = $this->getCmd(null, $_step . 'humidity');
+        $cmd = $this->getCmd(null, $_step . 'rh');
         $replace['#humidity#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
         $cmd = $this->getCmd(null, $_step . 'pop');
         $replace['#pop#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
@@ -449,9 +449,9 @@ class weatherbit extends eqLogic {
         $cmd = $this->getCmd(null, $_step . 'uv');
         $replace['#uv#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
         $cmd = $this->getCmd(null, $_step . 'sunset');
-        $replace['#sunset#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $replace['#sunset#'] = is_object($cmd) ? substr_replace($cmd->execCmd(),':',-2,0) : '';
         $cmd = $this->getCmd(null, $_step . 'sunrise');
-        $replace['#sunrise#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $replace['#sunrise#'] = is_object($cmd) ? substr_replace($cmd->execCmd(),':',-2,0) : '';
         $cmd = $this->getCmd(null, $_step . 'app_min_temp');
         $replace['#app_min_temp#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
         $cmd = $this->getCmd(null, $_step . 'app_max_temp');

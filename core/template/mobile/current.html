@@ -2,7 +2,7 @@
 		<center class="widget-name"><a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#">#name_display#</a>
 <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh#"><i class="fas fa-sync"></i></span>
 	</center>
-	<center><canvas id="weatherbit#iconeid#" width="56" height="56"></canvas></center>
+	<center><i class="wi #icone#" style="font-size: 42px;"></i></center>
 	<center>#condition# </center>
 	<center>#temperature#°C / #humidity#% / #uvi#UV</center>
 	<center>#windspeed# km/h</center>
@@ -10,14 +10,7 @@
 		<center>#forecast#</center>
 	</div>
 
-	<script src="plugins/weatherbit/desktop/js/skycons.js"></script>
 	<script>
-	  $color = $("span").css("color");
-  var skycons = new Skycons({'color':$color});
-
-	  skycons.set('weatherbit#iconeid#', '#icone#');
-
-	  skycons.play();
 
 	if ('#refresh#' != ''){
 			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {

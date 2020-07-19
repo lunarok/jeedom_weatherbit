@@ -31,7 +31,8 @@ if (!isConnect()) {
 			<center><strong> Actuellement </strong></center></br>
 			<div style="position : relative; left : 15px;">
 				<span class="pull-left">
-					<canvas id="icone-status" width="56" height="56"></canvas>
+					<br>
+						<i id="icone-status" class="wi #icone#" style="font-size: 42px;"></i>
 				</span>
 
 				<div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
@@ -42,7 +43,7 @@ if (!isConnect()) {
 				<span class="weather-status" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
 			</br>
 			<i class="wi wi-humidity"></i><span class="weather-status" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-status" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-status" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span></span><i class="wi wi-hot"></i><span class="weather-status" data-l1key="uvIndex" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
-			<i class="wi wi-barometer"></i><span class="weather-status" data-l1key="pressure" style="margin-left: 5px;font-size: 0.8em;">  </span> <i class="fas fa-flask"></i> <span class="weather-status" data-l1key="ozone" style="margin-left: 5px;font-size: 0.8em;">   </span>
+			<i class="wi wi-barometer"></i><span class="weather-status" data-l1key="pressure" style="margin-left: 5px;font-size: 0.8em;">  </span>
 
 		</div>
 
@@ -51,7 +52,8 @@ if (!isConnect()) {
 		<center><strong> Dans 1H </strong></center></br>
 		<div style="position : relative; left : 15px;">
 			<span class="pull-left">
-				<canvas id="icone-hour" width="56" height="56"></canvas>
+				<br>
+					<i id="icone-hour" class="wi #icone#" style="font-size: 42px;"></i>
 			</span>
 
 			<div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
@@ -70,7 +72,8 @@ if (!isConnect()) {
 	<center><strong> Aujourd'hui </strong></center></br>
 	<div style="position : relative; left : 15px;">
 		<span class="pull-left">
-			<canvas id="icone-day0" width="56" height="56"></canvas>
+			<br>
+				<i id="icone-day0" class="wi #icone#" style="font-size: 42px;"></i>
 		</span>
 
 		<div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
@@ -102,7 +105,8 @@ if (!isConnect()) {
 		<center><strong> Jour +1 </strong></center></br>
 		<div style="position : relative; left : 15px;">
 			<span class="pull-left">
-				<canvas id="icone-day1" width="56" height="56"></canvas>
+				<br>
+					<i id="icone-day1" class="wi #icone#" style="font-size: 42px;"></i>
 			</span>
 
 			<div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
@@ -124,7 +128,8 @@ if (!isConnect()) {
 	<center><strong> Jour +2 </strong></center></br>
 	<div style="position : relative; left : 15px;">
 		<span class="pull-left">
-			<canvas id="icone-day2" width="56" height="56"></canvas>
+			<br>
+				<i id="icone-day2" class="wi #icone#" style="font-size: 42px;"></i>
 		</span>
 
 		<div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
@@ -146,7 +151,8 @@ if (!isConnect()) {
 	<center><strong> Jour +3 </strong></center></br>
 	<div style="position : relative; left : 15px;">
 		<span class="pull-left">
-			<canvas id="icone-day3" width="56" height="56"></canvas>
+			<br>
+				<i id="icone-day3" class="wi #icone#" style="font-size: 42px;"></i>
 		</span>
 
 		<div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
@@ -225,6 +231,13 @@ $(function () {
 		for (var i in data.result.day3) {
 			$('.weather-day3[data-l1key=' + i + ']').value(data.result.day3[i]);
 		}
+
+		$("#icone-status").attr('class', data.result.status.icon);
+		$("#icone-status").attr('class', data.result.hour.icon);
+		$("#icone-status").attr('class', data.result.day0.icon);
+		$("#icone-status").attr('class', data.result.day1.icon);
+		$("#icone-status").attr('class', data.result.day2.icon);
+		$("#icone-status").attr('class', data.result.day3.icon);
 
 		roseTrace('wind-status',data.result.status.windBearing);
 		roseTrace('wind-hour',data.result.hour.windBearing);
