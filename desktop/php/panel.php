@@ -174,7 +174,6 @@ if (!isConnect()) {
 <div class="row">
 	<div class="col-md-4">
 		<center><strong> Azimuth </strong></center></br>
-		<div style="position : relative; left: 0px; margin-top: 10px;">
 		<div class="pull-right" style="margin-right: 15px;margin-top: 5px;">
 			<div id="azimuth" style="width: 80px; height: 80px;"></div>
 		</div>
@@ -182,12 +181,11 @@ if (!isConnect()) {
 			<div id="sunAlt" style="width: 80px; height: 80px;"></div>
     </div><br/>
 		<div style="margin-left: 70px; margin-right: 100px; margin-top: 0px;">
-			<center><i class="far fa-sun fa-2x"></i></center>
+			<center><i class="far fa-sun"></i></center>
 			<center style="font-size: 1em; position: relative;left:3px;cursor:default;"><span class="helio" data-l1key="sunrise" style="font-size: 0.8em;"></span> - <span class="helio" data-l1key="sunset" style="font-size: 0.8em;"></span></center>
-			<center><i class="far fa-moon fa-2x"></i></center>
+			<center><i class="far fa-moon"></i></center>
 			<center style="font-size: 1em; position: relative;left:3px;cursor:default;"><span class="helio" data-l1key="moonrise" style="font-size: 0.8em;"></span> - <span class="helio" data-l1key="moonset" style="font-size: 0.8em;"></span></center>
 		</div>
-	</div>
 </div>
 <div class="col-md-4">
 	<center><strong> Qualité d'Air </strong></center></br>
@@ -227,9 +225,9 @@ if (!isConnect()) {
 </div>
 <div class="col-md-4">
 	<center><strong> Pollens </strong></center></br>
-	<div style="display: table; overflow: hidden; position: relative; top: -10px;">
-				<center><span class="pollen" data-l1key="predominant_pollen_type" style="font-size: 0.8em;"></span></center>
-			</div>
+	<center><div style="display: table; overflow: hidden; position: relative; top: -10px;">
+				<center>Dominant : <span class="pollen" data-l1key="predominant_pollen_type" style="font-size: 0.8em;"></span></center>
+			</div></center>
 				<div style="display: table; overflow: hidden; width: 95%">
 					<div style="display: table-row;">
 						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Dioxyde d&#145;azote">
@@ -268,6 +266,164 @@ if (!isConnect()) {
 </style>
 
 <script>
+var chart1;
+var chart2;
+
+if($('#azimuth').html() != undefined){
+	chart1 = new Highcharts.Chart({
+		chart: {
+			renderTo: 'azimuth',
+			type: 'gauge',
+			backgroundColor: 'transparent',
+			plotBackgroundColor: null,
+			plotBackgroundImage: null,
+			plotBorderWidth: 0,
+			plotShadow: false,
+			spacingTop: 0,
+			spacingLeft: 0,
+			spacingRight: 0,
+			spacingBottom: 0
+		},
+		title: {
+			text: null
+		},
+		credits: {
+			enabled: false
+		},
+		pane: {
+			startAngle: 0,
+			endAngle: 360,
+			background: null
+		},
+		exporting : {
+			enabled: false
+		},
+		plotOptions: {
+			series: {
+				dataLabels: {
+					enabled: false
+				}
+			},
+			gauge: {
+				dial: {
+					backgroundColor: 'red',
+					borderColor: 'red',
+				},
+				pivot: {
+					backgroundColor: 'silver'
+				}
+			}
+		},
+		yAxis: {
+			min: 0,
+			max: 360,
+			tickWidth: 2,
+			tickLength: 10,
+			tickInterval: 90,
+			lineWidth: 4,
+			labels: {
+				distance: -16,
+				formatter: function () {
+					if (this.value == 360) {
+						return '<span style="font-weight:bold;">N</span>';
+					} else if (this.value == 90) {
+						return '<span style="font-weight:bold;">E</span>';
+					} else if (this.value == 180) {
+						return '<span style="font-weight:bold;">S</span>';
+					} else if (this.value == 270) {
+						return '<span style="font-weight:bold;">W</span>';
+					}
+				}
+			},
+			title: {
+				text: null
+			}},
+			series: [{
+				name: '',
+				data: [data.result.helio.h_angle]
+			}]
+		});
+	}
+	if($('#sunAlt').html() != undefined){
+
+		chart2 = new Highcharts.Chart({
+			chart: {
+				renderTo: 'sunAlt',
+				type: 'gauge',
+				backgroundColor: 'transparent',
+				plotBackgroundColor: null,
+				plotBackgroundImage: null,
+				plotBorderWidth: 0,
+				plotShadow: false,
+				spacingTop: 0,
+				spacingLeft: 0,
+				spacingRight: 0,
+				spacingBottom: 0
+			},
+			title: {
+				text: null
+			},
+			credits: {
+				enabled: false
+			},
+			pane: {
+				startAngle: -180,
+				endAngle: 0,
+				background: null
+			},
+			exporting : {
+				enabled: false
+			},
+			plotOptions: {
+				series: {
+					dataLabels: {
+						enabled: false
+					}
+				},
+				gauge: {
+					dial: {
+						backgroundColor: 'red',
+						borderColor: 'red',
+					},
+					pivot: {
+						backgroundColor: 'silver'
+					}
+				}
+			},
+			yAxis: {
+				min: -90,
+				max: 90,
+				tickWidth: 2,
+				tickLength: 10,
+				tickInterval: 90,
+				lineWidth: 4,
+				labels: {
+					distance: -16,
+					formatter: function () {
+						if (this.value == 0) {
+							return '<span style="font-weight:bold;">0</span>';
+						} else if (this.value == 45) {
+							return '<span style="font-weight:bold;"></span>';
+						} else if (this.value == 90) {
+							return '<span style="font-weight:bold;">90</span>';
+						} else if (this.value == -45) {
+							return '<span style="font-weight:bold;"></span>';
+						} else if (this.value == -90) {
+							return '<span style="font-weight:bold;">-90</span>';
+						}
+					}
+				},
+				title: {
+					text: null
+				}},
+				series: [{
+					name: '',
+					data: [data.result.helio.elev_angle]
+				}]
+			});
+		}
+
+
 $(function () {
 
 	loadingData(

@@ -339,8 +339,8 @@ class weatherbit extends eqLogic {
         $cmdsunset = $this->getCmd(null, 'daily0sunset');
         $cmdmoonrise_ts = $this->getCmd(null, 'daily0moonrise_ts');
         $cmdmoonset_ts = $this->getCmd(null, 'daily0moonset_ts');
-        $cmdelev_angle = $this->getCmd(null, 'daily0elev_angle');
-        $cmdh_angle = $this->getCmd(null, 'daily0h_angle');
+        $cmdelev_angle = $this->getCmd(null, 'currentelev_angle');
+        $cmdh_angle = $this->getCmd(null, 'currenth_angle');
         $return['helio'] = array(
           'sunrise' => $cmdsunrise->execCmd(),
           'sunset' => $cmdsunset->execCmd(),
