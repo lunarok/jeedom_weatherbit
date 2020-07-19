@@ -298,7 +298,7 @@ class weatherbit extends eqLogic {
         $params = 'lat=' . $geo[0] . '&lon=' . $geo[1] . '&lang=' . $lang[0] . '&key=' . $apikey;
         $parsed_json = $this->callWeatherbit('forecast/hourly', $params);
 
-        foreach ($parsed_json['hourly']['data'] as $value) {
+        foreach ($parsed_json['data'] as $value) {
             $return['previsions']['time'][] = $value['ts'] . '000';
             $return['previsions']['temperature'][] = $value['temp'];
             $return['previsions']['precipIntensity'][] = $value['precip'];
