@@ -332,7 +332,7 @@ $(function () {
 		for (var i in data.result.previsions.time) {
 			//console.log(data.result.previsions.temperature[i]);
 			var date = new Date(parseInt(data.result.previsions.time[i]));
-			var displayDate = date.getDate() + '/' + (date.getMonth()+1) + ' ' + date.getHours() + ':' + date.getMinutes().padStart(2, "0");
+			var displayDate = ("0" + date.getDate()).slice(-2) + '/' + ("0" + (date.getMonth() + 1)).slice(-2) + ' ' + ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
 			options.series[0].data.push(parseFloat(data.result.previsions.temperature[i],2));
 			options.series[1].data.push(parseFloat(data.result.previsions.precipIntensity[i],2));
 			options.series[2].data.push(parseInt(data.result.previsions.pressure[i]));
