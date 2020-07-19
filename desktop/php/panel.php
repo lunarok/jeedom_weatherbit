@@ -266,163 +266,6 @@ if (!isConnect()) {
 </style>
 
 <script>
-var chart1;
-var chart2;
-
-if($('#azimuth').html() != undefined){
-	chart1 = new Highcharts.Chart({
-		chart: {
-			renderTo: 'azimuth',
-			type: 'gauge',
-			backgroundColor: 'transparent',
-			plotBackgroundColor: null,
-			plotBackgroundImage: null,
-			plotBorderWidth: 0,
-			plotShadow: false,
-			spacingTop: 0,
-			spacingLeft: 0,
-			spacingRight: 0,
-			spacingBottom: 0
-		},
-		title: {
-			text: null
-		},
-		credits: {
-			enabled: false
-		},
-		pane: {
-			startAngle: 0,
-			endAngle: 360,
-			background: null
-		},
-		exporting : {
-			enabled: false
-		},
-		plotOptions: {
-			series: {
-				dataLabels: {
-					enabled: false
-				}
-			},
-			gauge: {
-				dial: {
-					backgroundColor: 'red',
-					borderColor: 'red',
-				},
-				pivot: {
-					backgroundColor: 'silver'
-				}
-			}
-		},
-		yAxis: {
-			min: 0,
-			max: 360,
-			tickWidth: 2,
-			tickLength: 10,
-			tickInterval: 90,
-			lineWidth: 4,
-			labels: {
-				distance: -16,
-				formatter: function () {
-					if (this.value == 360) {
-						return '<span style="font-weight:bold;">N</span>';
-					} else if (this.value == 90) {
-						return '<span style="font-weight:bold;">E</span>';
-					} else if (this.value == 180) {
-						return '<span style="font-weight:bold;">S</span>';
-					} else if (this.value == 270) {
-						return '<span style="font-weight:bold;">W</span>';
-					}
-				}
-			},
-			title: {
-				text: null
-			}},
-			series: [{
-				name: '',
-				data: [data.result.helio.h_angle]
-			}]
-		});
-	}
-	if($('#sunAlt').html() != undefined){
-
-		chart2 = new Highcharts.Chart({
-			chart: {
-				renderTo: 'sunAlt',
-				type: 'gauge',
-				backgroundColor: 'transparent',
-				plotBackgroundColor: null,
-				plotBackgroundImage: null,
-				plotBorderWidth: 0,
-				plotShadow: false,
-				spacingTop: 0,
-				spacingLeft: 0,
-				spacingRight: 0,
-				spacingBottom: 0
-			},
-			title: {
-				text: null
-			},
-			credits: {
-				enabled: false
-			},
-			pane: {
-				startAngle: -180,
-				endAngle: 0,
-				background: null
-			},
-			exporting : {
-				enabled: false
-			},
-			plotOptions: {
-				series: {
-					dataLabels: {
-						enabled: false
-					}
-				},
-				gauge: {
-					dial: {
-						backgroundColor: 'red',
-						borderColor: 'red',
-					},
-					pivot: {
-						backgroundColor: 'silver'
-					}
-				}
-			},
-			yAxis: {
-				min: -90,
-				max: 90,
-				tickWidth: 2,
-				tickLength: 10,
-				tickInterval: 90,
-				lineWidth: 4,
-				labels: {
-					distance: -16,
-					formatter: function () {
-						if (this.value == 0) {
-							return '<span style="font-weight:bold;">0</span>';
-						} else if (this.value == 45) {
-							return '<span style="font-weight:bold;"></span>';
-						} else if (this.value == 90) {
-							return '<span style="font-weight:bold;">90</span>';
-						} else if (this.value == -45) {
-							return '<span style="font-weight:bold;"></span>';
-						} else if (this.value == -90) {
-							return '<span style="font-weight:bold;">-90</span>';
-						}
-					}
-				},
-				title: {
-					text: null
-				}},
-				series: [{
-					name: '',
-					data: [data.result.helio.elev_angle]
-				}]
-			});
-		}
-
 
 $(function () {
 
@@ -526,7 +369,162 @@ $(function () {
 		roseTrace('wind-day2',data.result.day2.windBearing);
 		roseTrace('wind-day3',data.result.day3.windBearing);
 
-		//console.log(data.result.temp.value);
+		var chart1;
+		var chart2;
+
+		if($('#azimuth').html() != undefined){
+			chart1 = new Highcharts.Chart({
+				chart: {
+					renderTo: 'azimuth',
+					type: 'gauge',
+					backgroundColor: 'transparent',
+					plotBackgroundColor: null,
+					plotBackgroundImage: null,
+					plotBorderWidth: 0,
+					plotShadow: false,
+					spacingTop: 0,
+					spacingLeft: 0,
+					spacingRight: 0,
+					spacingBottom: 0
+				},
+				title: {
+					text: null
+				},
+				credits: {
+					enabled: false
+				},
+				pane: {
+					startAngle: 0,
+					endAngle: 360,
+					background: null
+				},
+				exporting : {
+					enabled: false
+				},
+				plotOptions: {
+					series: {
+						dataLabels: {
+							enabled: false
+						}
+					},
+          gauge: {
+            dial: {
+              backgroundColor: 'red',
+              borderColor: 'red',
+            },
+            pivot: {
+              backgroundColor: 'silver'
+            }
+          }
+				},
+				yAxis: {
+					min: 0,
+					max: 360,
+					tickWidth: 2,
+					tickLength: 10,
+					tickInterval: 90,
+					lineWidth: 4,
+					labels: {
+            distance: -16,
+						formatter: function () {
+							if (this.value == 360) {
+								return '<span style="font-weight:bold;">N</span>';
+							} else if (this.value == 90) {
+								return '<span style="font-weight:bold;">E</span>';
+							} else if (this.value == 180) {
+								return '<span style="font-weight:bold;">S</span>';
+							} else if (this.value == 270) {
+								return '<span style="font-weight:bold;">W</span>';
+							}
+						}
+					},
+					title: {
+						text: null
+					}},
+					series: [{
+						name: '',
+						data: [data.result.helio.h_angle]
+					}]
+				});
+			}
+			if($('#sunAlt').html() != undefined){
+
+				chart2 = new Highcharts.Chart({
+					chart: {
+						renderTo: 'sunAlt',
+						type: 'gauge',
+						backgroundColor: 'transparent',
+						plotBackgroundColor: null,
+						plotBackgroundImage: null,
+						plotBorderWidth: 0,
+						plotShadow: false,
+						spacingTop: 0,
+						spacingLeft: 0,
+						spacingRight: 0,
+						spacingBottom: 0
+					},
+					title: {
+						text: null
+					},
+					credits: {
+						enabled: false
+					},
+					pane: {
+						startAngle: -180,
+						endAngle: 0,
+						background: null
+					},
+					exporting : {
+						enabled: false
+					},
+					plotOptions: {
+						series: {
+							dataLabels: {
+								enabled: false
+							}
+						},
+            gauge: {
+              dial: {
+                backgroundColor: 'red',
+                borderColor: 'red',
+              },
+              pivot: {
+                backgroundColor: 'silver'
+              }
+            }
+					},
+					yAxis: {
+						min: -90,
+						max: 90,
+						tickWidth: 2,
+						tickLength: 10,
+						tickInterval: 90,
+						lineWidth: 4,
+						labels: {
+              distance: -16,
+							formatter: function () {
+								if (this.value == 0) {
+									return '<span style="font-weight:bold;">0</span>';
+								} else if (this.value == 45) {
+									return '<span style="font-weight:bold;"></span>';
+								} else if (this.value == 90) {
+									return '<span style="font-weight:bold;">90</span>';
+								} else if (this.value == -45) {
+									return '<span style="font-weight:bold;"></span>';
+								} else if (this.value == -90) {
+									return '<span style="font-weight:bold;">-90</span>';
+								}
+							}
+						},
+						title: {
+							text: null
+						}},
+						series: [{
+							name: '',
+							data: [data.result.helio.elev_angle]
+						}]
+					});
+				}
 
 		var options = {
 			title : {	text : 'Prévisions'	},
