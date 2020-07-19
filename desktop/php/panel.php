@@ -184,7 +184,7 @@ if (!isConnect()) {
 			<center><i class="far fa-sun"></i></center>
 			<center style="font-size: 1em; position: relative;left:3px;cursor:default;"><span class="helio" data-l1key="sunrise" style="font-size: 0.8em;"></span> - <span class="helio" data-l1key="sunset" style="font-size: 0.8em;"></span></center>
 			<center><i class="far fa-moon"></i></center>
-			<center style="font-size: 1em; position: relative;left:3px;cursor:default;"><span class="helio" data-l1key="moonrise" style="font-size: 0.8em;"></span> - <span class="helio" data-l1key="moonset" style="font-size: 0.8em;"></span></center>
+			<center style="font-size: 1em; position: relative;left:3px;cursor:default;"><span class="helio" data-l1key="moonrise_ts" style="font-size: 0.8em;"></span> - <span class="helio" data-l1key="moonset_ts" style="font-size: 0.8em;"></span></center>
 		</div>
 </div>
 <div class="col-md-4">
