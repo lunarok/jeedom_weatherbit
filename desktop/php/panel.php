@@ -179,7 +179,7 @@ if (!isConnect()) {
 <div class="col-md-4">
 	<center><strong> Qualité d'Air </strong></center></br>
 	<div style="display: table; overflow: hidden; position: relative; top: -10px;">
-				<div class="air-general" style="background-color:#aqicolor#;color:#aqifont#;"><center><span class="aqi" data-l1key="aqi" style="font-size: 0.8em;"></span>/center></div>
+				<div class="air-general" style="background-color:#aqicolor#;color:#aqifont#;"><center><span class="aqi" data-l1key="aqi" style="font-size: 0.8em;"></span></center></div>
 			</div>
 				<div style="display: table; overflow: hidden; width: 95%">
 					<div style="display: table-row;">
@@ -214,7 +214,25 @@ if (!isConnect()) {
 </div>
 <div class="col-md-4">
 	<center><strong> Pollens </strong></center></br>
-
+	<div style="display: table; overflow: hidden; position: relative; top: -10px;">
+				<center><span class="pollen" data-l1key="predominant_pollen_type" style="font-size: 0.8em;"></span></center>
+			</div>
+				<div style="display: table; overflow: hidden; width: 95%">
+					<div style="display: table-row;">
+						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Dioxyde d&#145;azote">
+							<center><strong>Graminés</strong></center>
+							<center><span class="pollen" data-l1key="pollen_level_weed" style="font-size: 0.8em;"></span></center>
+						</div>
+						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
+							<center><strong>Herbe</strong></center>
+							<center><span class="pollen" data-l1key="pollen_level_grass" style="font-size: 0.8em;"></span></center>
+						</div>
+						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
+							<center><strong>Arbres</strong></center>
+							<center><span class="pollen" data-l1key="pollen_level_tree" style="font-size: 0.8em;"></span></center>
+						</div>
+						</div>
+				</div>
 </div>
 </div>
 </div>
@@ -298,6 +316,11 @@ $(function () {
 		$('.aqi').value('');
 		for (var i in data.result.aqi) {
 			$('.aqi[data-l1key=' + i + ']').value(data.result.aqi[i]);
+		}
+
+		$('.pollen').value('');
+		for (var i in data.result.aqi) {
+			$('.pollen[data-l1key=' + i + ']').value(data.result.pollen[i]);
 		}
 
 		$("#icone-status").attr('class', 'wi ' + data.result.status.icon);

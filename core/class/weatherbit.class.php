@@ -324,6 +324,17 @@ class weatherbit extends eqLogic {
           'pm25' => $cmdpm25->execCmd(),
         );
 
+        $cmdpredominant_pollen_type = $this->getCmd(null, 'currentpredominant_pollen_type');
+        $cmdpollen_level_weed = $this->getCmd(null, 'currentpollen_level_weed');
+        $cmdpollen_level_grass = $this->getCmd(null, 'currentpollen_level_grass');
+        $cmdpollen_level_tree = $this->getCmd(null, 'currentpollen_level_tree');
+        $return['aqi'] = array(
+          'predominant_pollen_type' => $cmdpredominant_pollen_type->execCmd(),
+          'pollen_level_weed' => $cmdpollen_level_weed->execCmd(),
+          'pollen_level_grass' => $cmdpollen_level_grass->execCmd(),
+          'pollen_level_tree' => $cmdpollen_level_tree->execCmd(),
+        );
+
         $replace = $this->getReplace('current');
         $return['status'] = array(
           'summary' => $replace['#description#'],
