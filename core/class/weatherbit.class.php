@@ -293,7 +293,7 @@ class weatherbit extends eqLogic {
         //log::add('weatherbit', 'debug', print_r($parsed_json['currently'], true));
 
         foreach ($parsed_json['hourly']['data'] as $value) {
-            $return['previsions']['time'][] = $value['time'] . '000';
+            $return['previsions']['time'][] = $value['ts'] . '000';
             $return['previsions']['temperature'][] = $value['temp'];
             $return['previsions']['precipIntensity'][] = $value['precip'];
             $return['previsions']['windSpeed'][] = $value['wind_spd'];
@@ -301,105 +301,155 @@ class weatherbit extends eqLogic {
             $return['previsions']['uvIndex'][] = $value['uv'];
         }
 
+
+        $replace = $this->getReplace('current');
         $return['status'] = array(
-            'summary' => $parsed_json['currently']['description'],
-            'icon' => $parsed_json['currently']['icon'],
-            'temperature' => $parsed_json['currently']['temperature'] . '°C',
-            'apparentTemperature' => '(' . $parsed_json['currently']['apparentTemperature'] . '°C)',
-            'humidity' => $parsed_json['currently']['humidity']*100 . '%',
-            'precipProbability' => $parsed_json['currently']['precipProbability']*100 . '%',
-            'windSpeed' => $parsed_json['currently']['windSpeed'] . 'km/h',
-            'windBearing' => $parsed_json['currently']['windBearing'] > 179 ? $parsed_json['currently']['windBearing'] -180 : $windBearing_status = $parsed_json['currently']['windBearing'] + 180,
-            'cloudCover' => $parsed_json['currently']['cloudCover']*100 . '%',
-            'pressure' => $parsed_json['currently']['pressure'] . 'hPa',
-            'ozone' => $parsed_json['currently']['ozone'] . 'DU',
-            'uvIndex' => $parsed_json['currently']['uvIndex'],
+          'summary' => $replace['#description#'],
+          'icon' => $replace['#icone#'],
+          'temperature' => $$replace['#temp#'] . '°C',
+          'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
+          'humidity' => $replace['#humidity#'] . '%',
+          'precipProbability' => $replace['#pop#'] . '%',
+          'windSpeed' => $replace['#wind_spd#']*3.6 . 'km/h',
+          'windBearing' => $replace['#wind_dir#'],
+          'cloudCover' => $replace['#clouds#'] . '%',
+          'pressure' => $replace['#pres#'] . 'hPa',
+          'ozone' => $replace['#ozone#'] . 'DU',
+          'uvIndex' => $replace['#uv#'],
         );
 
+        $replace = $this->getReplace('hourly1');
         $return['hour'] = array(
-            'summary' => $parsed_json['hourly']['data']['1']['summary'],
-            'icon' => $parsed_json['hourly']['data']['1']['icon'],
-            'temperature' => $parsed_json['hourly']['data']['1']['temperature'] . '°C',
-            'apparentTemperature' => '(' . $parsed_json['hourly']['data']['1']['apparentTemperature'] . '°C)',
-            'humidity' => $parsed_json['hourly']['data']['1']['humidity']*100 . '%',
-            'precipProbability' => $parsed_json['hourly']['data']['1']['precipProbability']*100 . '%',
-            'windSpeed' => $parsed_json['hourly']['data']['1']['windSpeed'] . 'km/h',
-            'windBearing' => $parsed_json['hourly']['data']['1']['windBearing'] > 179 ? $parsed_json['hourly']['data']['0']['windBearing'] -180 : $windBearing_status = $parsed_json['hourly']['data']['0']['windBearing'] + 180,
-            'cloudCover' => $parsed_json['hourly']['data']['1']['cloudCover']*100 . '%',
-            'pressure' => $parsed_json['hourly']['data']['1']['pressure'] . 'hPa',
-            'ozone' => $parsed_json['hourly']['data']['1']['ozone'] . 'DU',
-            'uvIndex' => $parsed_json['hourly']['data']['1']['uvIndex'],
+          'summary' => $replace['#description#'],
+          'icon' => $replace['#icone#'],
+          'temperature' => $$replace['#temp#'] . '°C',
+          'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
+          'humidity' => $replace['#humidity#'] . '%',
+          'precipProbability' => $replace['#pop#'] . '%',
+          'windSpeed' => $replace['#wind_spd#']*3.6 . 'km/h',
+          'windBearing' => $replace['#wind_dir#'],
+          'cloudCover' => $replace['#clouds#'] . '%',
+          'pressure' => $replace['#pres#'] . 'hPa',
+          'ozone' => $replace['#ozone#'] . 'DU',
+          'uvIndex' => $replace['#uv#'],
         );
 
+        $replace = $this->getReplace('daily0');
         $return['day0'] = array(
-            'summary' => $parsed_json['daily']['data']['0']['summary'],
-            'icon' => $parsed_json['daily']['data']['0']['icon'],
-            'temperatureMin' => $parsed_json['daily']['data']['0']['temperatureMin'] . '°C',
-            'temperatureMax' => $parsed_json['daily']['data']['0']['temperatureMax'] . '°C',
-            'humidity' => $parsed_json['daily']['data']['0']['humidity']*100 . '%',
-            'precipProbability' => $parsed_json['daily']['data']['0']['precipProbability']*100 . '%',
-            'windSpeed' => $parsed_json['daily']['data']['0']['windSpeed'] . 'km/h',
-            'windBearing' => $parsed_json['daily']['data']['0']['windBearing'] > 179 ? $parsed_json['daily']['data']['0']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['0']['windBearing'] + 180,
-            'cloudCover' => $parsed_json['daily']['data']['0']['cloudCover']*100 . '%',
-            'pressure' => $parsed_json['daily']['data']['0']['pressure'] . 'hPa',
-            'ozone' => $parsed_json['daily']['data']['0']['ozone'] . 'DU',
-            'sunriseTime' => date('H:i',$parsed_json['daily']['data']['0']['sunriseTime']),
-            'sunsetTime' => date('H:i',$parsed_json['daily']['data']['0']['sunsetTime']),
-            'uvIndex' => $parsed_json['daily']['data']['0']['uvIndex'],
+          'summary' => $replace['#description#'],
+          'icon' => $replace['#icone#'],
+          'temperature' => $$replace['#temp#'] . '°C',
+          'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
+          'humidity' => $replace['#humidity#'] . '%',
+          'precipProbability' => $replace['#pop#'] . '%',
+          'windSpeed' => $replace['#wind_spd#']*3.6 . 'km/h',
+          'windBearing' => $replace['#wind_dir#'],
+          'cloudCover' => $replace['#clouds#'] . '%',
+          'pressure' => $replace['#pres#'] . 'hPa',
+          'ozone' => $replace['#ozone#'] . 'DU',
+          'uvIndex' => $replace['#uv#'],
+          'sunriseTime' => $replace['#sunrise#'],
+          'sunsetTime' => $replace['#sunset#'],
+          'temperatureMin' => $replace['#app_min_temp#'] . '°C',
+          'temperatureMax' => $replace['#app_max_temp#'] . '°C',
         );
 
+        $replace = $this->getReplace('daily1');
         $return['day1'] = array(
-            'summary' => $parsed_json['daily']['data']['1']['summary'],
-            'icon' => $parsed_json['daily']['data']['1']['icon'],
-            'temperatureMin' => $parsed_json['daily']['data']['1']['temperatureMin'] . '°C',
-            'temperatureMax' => $parsed_json['daily']['data']['1']['temperatureMax'] . '°C',
-            'humidity' => $parsed_json['daily']['data']['1']['humidity']*100 . '%',
-            'precipProbability' => $parsed_json['daily']['data']['1']['precipProbability']*100 . '%',
-            'windSpeed' => $parsed_json['daily']['data']['1']['windSpeed'] . 'km/h',
-            'windBearing' => $parsed_json['daily']['data']['1']['windBearing'] > 179 ? $parsed_json['daily']['data']['1']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['1']['windBearing'] + 180,
-            'cloudCover' => $parsed_json['daily']['data']['1']['cloudCover']*100 . '%',
-            'pressure' => $parsed_json['daily']['data']['1']['pressure'] . 'hPa',
-            'ozone' => $parsed_json['daily']['data']['1']['ozone'] . 'DU',
-            'sunriseTime' => date('H:i',$parsed_json['daily']['data']['1']['sunriseTime']),
-            'sunsetTime' => date('H:i',$parsed_json['daily']['data']['1']['sunsetTime']),
-            'uvIndex' => $parsed_json['daily']['data']['1']['uvIndex'],
+          'summary' => $replace['#description#'],
+          'icon' => $replace['#icone#'],
+          'temperature' => $$replace['#temp#'] . '°C',
+          'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
+          'humidity' => $replace['#humidity#'] . '%',
+          'precipProbability' => $replace['#pop#'] . '%',
+          'windSpeed' => $replace['#wind_spd#']*3.6 . 'km/h',
+          'windBearing' => $replace['#wind_dir#'],
+          'cloudCover' => $replace['#clouds#'] . '%',
+          'pressure' => $replace['#pres#'] . 'hPa',
+          'ozone' => $replace['#ozone#'] . 'DU',
+          'uvIndex' => $replace['#uv#'],
+          'sunriseTime' => $replace['#sunrise#'],
+          'sunsetTime' => $replace['#sunset#'],
+          'temperatureMin' => $replace['#app_min_temp#'] . '°C',
+          'temperatureMax' => $replace['#app_max_temp#'] . '°C',
         );
 
+        $replace = $this->getReplace('daily2');
         $return['day2'] = array(
-            'summary' => $parsed_json['daily']['data']['2']['summary'],
-            'icon' => $parsed_json['daily']['data']['2']['icon'],
-            'temperatureMin' => $parsed_json['daily']['data']['2']['temperatureMin'] . '°C',
-            'temperatureMax' => $parsed_json['daily']['data']['2']['temperatureMax'] . '°C',
-            'humidity' => $parsed_json['daily']['data']['2']['humidity']*100 . '%',
-            'precipProbability' => $parsed_json['daily']['data']['2']['precipProbability']*100 . '%',
-            'windSpeed' => $parsed_json['daily']['data']['2']['windSpeed'] . 'km/h',
-            'windBearing' => $parsed_json['daily']['data']['2']['windBearing'] > 179 ? $parsed_json['daily']['data']['2']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['2']['windBearing'] + 180,
-            'cloudCover' => $parsed_json['daily']['data']['2']['cloudCover']*100 . '%',
-            'pressure' => $parsed_json['daily']['data']['2']['pressure'] . 'hPa',
-            'ozone' => $parsed_json['daily']['data']['2']['ozone'] . 'DU',
-            'sunriseTime' => date('H:i',$parsed_json['daily']['data']['2']['sunriseTime']),
-            'sunsetTime' => date('H:i',$parsed_json['daily']['data']['2']['sunsetTime']),
-            'uvIndex' => $parsed_json['daily']['data']['2']['uvIndex'],
+          'summary' => $replace['#description#'],
+          'icon' => $replace['#icone#'],
+          'temperature' => $$replace['#temp#'] . '°C',
+          'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
+          'humidity' => $replace['#humidity#'] . '%',
+          'precipProbability' => $replace['#pop#'] . '%',
+          'windSpeed' => $replace['#wind_spd#']*3.6 . 'km/h',
+          'windBearing' => $replace['#wind_dir#'],
+          'cloudCover' => $replace['#clouds#'] . '%',
+          'pressure' => $replace['#pres#'] . 'hPa',
+          'ozone' => $replace['#ozone#'] . 'DU',
+          'uvIndex' => $replace['#uv#'],
+          'sunriseTime' => $replace['#sunrise#'],
+          'sunsetTime' => $replace['#sunset#'],
+          'temperatureMin' => $replace['#app_min_temp#'] . '°C',
+          'temperatureMax' => $replace['#app_max_temp#'] . '°C',
         );
 
+        $replace = $this->getReplace('daily3');
         $return['day3'] = array(
-            'summary' => $parsed_json['daily']['data']['3']['summary'],
-            'icon' => $parsed_json['daily']['data']['3']['icon'],
-            'temperatureMin' => $parsed_json['daily']['data']['3']['temperatureMin'] . '°C',
-            'temperatureMax' => $parsed_json['daily']['data']['3']['temperatureMax'] . '°C',
-            'humidity' => $parsed_json['daily']['data']['3']['humidity']*100 . '%',
-            'precipProbability' => $parsed_json['daily']['data']['3']['precipProbability']*100 . '%',
-            'windSpeed' => $parsed_json['daily']['data']['3']['windSpeed'] . 'km/h',
-            'windBearing' => $parsed_json['daily']['data']['3']['windBearing'] > 179 ? $parsed_json['daily']['data']['3']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['3']['windBearing'] + 180,
-            'cloudCover' => $parsed_json['daily']['data']['3']['cloudCover']*100 . '%',
-            'pressure' => $parsed_json['daily']['data']['3']['pressure'] . 'hPa',
-            'ozone' => $parsed_json['daily']['data']['3']['ozone'] . 'DU',
-            'sunriseTime' => date('H:i',$parsed_json['daily']['data']['3']['sunriseTime']),
-            'sunsetTime' => date('H:i',$parsed_json['daily']['data']['3']['sunsetTime']),
-            'uvIndex' => $parsed_json['daily']['data']['3']['uvIndex'],
+          'summary' => $replace['#description#'],
+          'icon' => $replace['#icone#'],
+          'temperature' => $$replace['#temp#'] . '°C',
+          'apparentTemperature' => '(' . $replace['#app_temp#'] . '°C)',
+          'humidity' => $replace['#humidity#'] . '%',
+          'precipProbability' => $replace['#pop#'] . '%',
+          'windSpeed' => $replace['#wind_spd#']*3.6 . 'km/h',
+          'windBearing' => $replace['#wind_dir#'],
+          'cloudCover' => $replace['#clouds#'] . '%',
+          'pressure' => $replace['#pres#'] . 'hPa',
+          'ozone' => $replace['#ozone#'] . 'DU',
+          'uvIndex' => $replace['#uv#'],
+          'sunriseTime' => $replace['#sunrise#'],
+          'sunsetTime' => $replace['#sunset#'],
+          'temperatureMin' => $replace['#app_min_temp#'] . '°C',
+          'temperatureMax' => $replace['#app_max_temp#'] . '°C',
         );
-
         return $return;
+    }
+
+    public function getReplace($_step) {
+        $replace = array();
+        $replace['#icone#'] = $this->getIcone($_step);
+        $cmd = $this->getCmd(null, $_step . 'weather::description');
+        $replace['#description#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'temp');
+        $replace['#temp#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'app_temp');
+        $replace['#app_temp#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'humidity');
+        $replace['#humidity#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'pop');
+        $replace['#pop#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'wind_spd');
+        $replace['#wind_spd#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'wind_dir');
+        $replace['#wind_dir#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'clouds');
+        $replace['#clouds#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'pres');
+        $replace['#pres#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'ozone');
+        $replace['#ozone#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'uv');
+        $replace['#uv#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'sunset');
+        $replace['#sunset#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'sunrise');
+        $replace['#sunrise#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'app_min_temp');
+        $replace['#app_min_temp#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $cmd = $this->getCmd(null, $_step . 'app_max_temp');
+        $replace['#app_max_temp#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        return $replace;
     }
 
     public function getGeoloc($_infos = '') {
@@ -487,7 +537,7 @@ class weatherbit extends eqLogic {
         $replace['#humidity#'] = is_object($humidity) ? $humidity->execCmd() : '';
 
         $uvindex = $this->getCmd(null, 'currentuv');
-        $replace['#uvi#'] = is_object($uvindex) ? $uvindex->execCmd() : '';
+        $replace['#uvi#'] = is_object($uvindex) ? round($uvindex->execCmd()) : '';
 
         $pressure = $this->getCmd(null, 'currentpres');
         $replace['#pressure#'] = is_object($pressure) ? $pressure->execCmd() : '';
