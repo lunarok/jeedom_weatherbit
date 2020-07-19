@@ -296,7 +296,7 @@ class weatherbit extends eqLogic {
         $lang = explode('_',config::byKey('language'));
         $geo = explode(',',$geolocval);
         $params = 'lat=' . $geo[0] . '&lon=' . $geo[1] . '&lang=' . $lang[0] . '&key=' . $apikey;
-        $parsed_json = $this->callWeatherbit('forecast/hourly', $_params);
+        $parsed_json = $this->callWeatherbit('forecast/hourly', $params);
 
         foreach ($parsed_json['hourly']['data'] as $value) {
             $return['previsions']['time'][] = $value['ts'] . '000';
@@ -419,7 +419,7 @@ class weatherbit extends eqLogic {
           'temperatureMin' => $replace['#app_min_temp#'] . '°C',
           'temperatureMax' => $replace['#app_max_temp#'] . '°C',
         );
-        log::add('weatherbit', 'debug', 'result : ' . print_r($result,true));
+        log::add('weatherbit', 'debug', 'result : ' . print_r($return,true));
         return $return;
     }
 
@@ -427,7 +427,7 @@ class weatherbit extends eqLogic {
         $replace = array();
         $replace['#icone#'] = $this->getIcone($_step);
         $cmd = $this->getCmd(null, $_step . 'weather::description');
-        $replace['#description#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
+        $replace['#description#'] = is_object($cmd) ? $cmd->execCmd() : '';
         $cmd = $this->getCmd(null, $_step . 'temp');
         $replace['#temp#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
         $cmd = $this->getCmd(null, $_step . 'app_temp');
