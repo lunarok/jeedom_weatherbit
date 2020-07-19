@@ -331,17 +331,17 @@ $(function () {
 		$("#icone-day3").attr('class', 'wi ' + data.result.day3.icon);
 
 		if (data.result.aqi.aqi <= 50) {
-			$(".air-general").attr('class', 'background-color:#00ff1e;color:black;');
+			$(".air-general").attr('style', 'background-color:#00ff1e;color:black;');
 		} else if (data.result.aqi.aqi <= 100) {
-			$(".air-general").attr('class', 'background-color:#FFde33;color:black;');
+			$(".air-general").attr('style', 'background-color:#FFde33;color:black;');
 		} else if (data.result.aqi.aqi <= 150) {
-			$(".air-general").attr('class', 'background-color:#FF9933;color:white;');
+			$(".air-general").attr('style', 'background-color:#FF9933;color:white;');
 		} else if (data.result.aqi.aqi <= 200) {
-			$(".air-general").attr('class', 'background-color:#CC0033;color:white;');
+			$(".air-general").attr('style', 'background-color:#CC0033;color:white;');
 		} else if (data.result.aqi.aqi <= 300) {
-			$(".air-general").attr('class', 'background-color:#660035;color:white;');
+			$(".air-general").attr('style', 'background-color:#660035;color:white;');
 		} else {
-			$(".air-general").attr('class', 'background-color:#660035;color:white;');
+			$(".air-general").attr('style', 'background-color:#660035;color:white;');
 		}
 
 
