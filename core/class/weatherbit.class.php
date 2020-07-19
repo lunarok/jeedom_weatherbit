@@ -495,33 +495,36 @@ class weatherbit extends eqLogic {
         if ($_version != 'mobile' || $this->getConfiguration('fullMobileDisplay', 0) == 1) {
             $forcast_template = getTemplate('core', $version, 'forecast', 'weatherbit');
             for ($i = 0; $i < 5; $i++) {
-                $replace['#day#'] = date_fr(date('l', strtotime('+' . $i . ' days')));
-                $j = $i + 1;
-                if ($i == 1) {
-                  $step = 'current';
-                } else if ($i == 2) {
-                  $step = 'hourly1';
-                } else if ($i == 3) {
-                  $step = 'daily1';
-                } else if ($i == 4) {
-                  $step = 'daily2';
-                } else {
-                  $step = 'daily3';
-                }
-
-                if ($i == 2) {
-                  $replace['#day#'] = '+ 1h';
-                  $temperature_min = $this->getCmd(null, $step . 'temp');
+                if ($i == 0) {
+                  $replace['#day#'] = "Aujourd'hui";
+                  $temperature_min = $this->getCmd(null, 'currentmin_temp');
                   $replace['#low_temperature#'] = is_object($temperature_min) ? round($temperature_min->execCmd()) : '';
 
-                  $temperature_max = $this->getCmd(null, $step . 'app_temp');
+                  $temperature_max = $this->getCmd(null, 'currentmax_temp');
+                  $replace['#hight_temperature#'] = is_object($temperature_max) ? round($temperature_max->execCmd()) : '';
+                  $replace['#tempid#'] = is_object($temperature_max) ? $temperature_max->getId() : '';
+                } else if ($i == 1) {
+                  $replace['#day#'] = '+ 1h';
+                  $temperature_min = $this->getCmd(null, 'hourly1temp');
+                  $replace['#low_temperature#'] = is_object($temperature_min) ? round($temperature_min->execCmd()) : '';
+
+                  $temperature_max = $this->getCmd(null, 'hourly1app_temp');
                   $replace['#hight_temperature#'] = is_object($temperature_max) ? round($temperature_max->execCmd()) : '';
                   $replace['#tempid#'] = is_object($temperature_max) ? $temperature_max->getId() : '';
                 } else {
-                  $temperature_min = $this->getCmd(null, $step . 'min_temp');
+                  if ($i == 2) {
+                    $step = 'daily1';
+                  } else if ($i == 3) {
+                    $step = 'daily2';
+                  } else {
+                    $step = 'daily3';
+                  }
+                  $j = $i - 1;
+                  $replace['#day#'] = date_fr(date('l', strtotime('+' . $j . ' days')));
+                  $temperature_min = $this->getCmd(null, $step . 'app_min_temp');
                   $replace['#low_temperature#'] = is_object($temperature_min) ? round($temperature_min->execCmd()) : '';
 
-                  $temperature_max = $this->getCmd(null, $step . 'max_temp');
+                  $temperature_max = $this->getCmd(null, $step . 'app_max_temp');
                   $replace['#hight_temperature#'] = is_object($temperature_max) ? round($temperature_max->execCmd()) : '';
                   $replace['#tempid#'] = is_object($temperature_max) ? $temperature_max->getId() : '';
                 }
