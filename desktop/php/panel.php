@@ -319,7 +319,7 @@ $(function () {
 		}
 
 		$('.pollen').value('');
-		for (var i in data.result.aqi) {
+		for (var i in data.result.pollen) {
 			$('.pollen[data-l1key=' + i + ']').value(data.result.pollen[i]);
 		}
 
