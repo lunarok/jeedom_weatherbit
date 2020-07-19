@@ -178,34 +178,36 @@ if (!isConnect()) {
 </div>
 <div class="col-md-4">
 	<center><strong> Qualité d'Air </strong></center></br>
-	<div style="font-size: 0.8em; position: relative; top: -10px;"><span class="aqi" data-l1key="aqi" style="font-size: 0.8em;"></span></div>
+	<div style="display: table; overflow: hidden; position: relative; top: -10px;">
+				<div class="air-general" style="background-color:#aqicolor#;color:#aqifont#;"><center><span class="aqi" data-l1key="aqi" style="font-size: 0.8em;"></span>/center></div>
+			</div>
 				<div style="display: table; overflow: hidden; width: 95%">
 					<div style="display: table-row;">
 						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Dioxyde d&#145;azote">
 							<center><strong>NO</strong><sub style="font-size: 0.6em;">2</sub></center>
-							<span class="aqi" data-l1key="no2" style="font-size: 0.8em;"></span>
+							<center><span class="aqi" data-l1key="no2" style="font-size: 0.8em;"></span></center>
 						</div>
 						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
 							<center><strong>O</strong><sub style="font-size: 0.6em;">3</sub></center>
-							<span class="aqi" data-l1key="o3" style="font-size: 0.8em;"></span>
+							<center><span class="aqi" data-l1key="o3" style="font-size: 0.8em;"></span></center>
 						</div>
 						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
 							<center><strong>CO</strong></center>
-							<span class="aqi" data-l1key="co" style="font-size: 0.8em;"></span>
+							<center><span class="aqi" data-l1key="co" style="font-size: 0.8em;"></span></center>
 						</div>
 						</div>
 						<div style="display: table-row;">
 						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
 							<center><strong>SO</strong><sub style="font-size: 0.6em;">2</sub></center>
-							<span class="aqi" data-l1key="so2" style="font-size: 0.8em;"></span>
+							<center><span class="aqi" data-l1key="so2" style="font-size: 0.8em;"></span></center>
 						</div>
 						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Particules fines &lt; 2,5&micro;m (particules de combustion...)">
 							<center><strong>PM</strong><sub style="font-size: 0.6em;">2,5</sub></center>
-				    			<span class="aqi" data-l1key="pm25" style="font-size: 0.8em;"></span>
+				    			<center><span class="aqi" data-l1key="pm25" style="font-size: 0.8em;"></span></center>
 						</div>
 						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Particules fines &lt; 10&micro;m (poussi&egrave;re, pollen...)">
 							<center><strong>PM</strong><sub style="font-size: 0.6em;">10</sub></center>
-							<span class="aqi" data-l1key="pm10" style="font-size: 0.8em;"></span>
+							<center><span class="aqi" data-l1key="pm10" style="font-size: 0.8em;"></span></center>
 						</div>
 					</div>
 				</div>
@@ -216,6 +218,23 @@ if (!isConnect()) {
 </div>
 </div>
 </div>
+
+<style>
+	.air-general {
+	  display: table-cell;
+	  vertical-align: middle;
+	  align: center;
+	  cursor:default;
+	  font-size: 1.5em;
+	  font-weight: bold;
+	  border-style: solid;
+	  border-width: 1px;
+	  border-color: #ffffff;
+	  border-radius:19px;
+	  width:38px;
+	  height:38px;
+	}
+</style>
 
 <script>
 $(function () {
@@ -287,6 +306,21 @@ $(function () {
 		$("#icone-day1").attr('class', 'wi ' + data.result.day1.icon);
 		$("#icone-day2").attr('class', 'wi ' + data.result.day2.icon);
 		$("#icone-day3").attr('class', 'wi ' + data.result.day3.icon);
+
+		if (data.result.aqi.aqi <= 50) {
+			$(".air-general").attr('class', 'background-color:#00ff1e;color:black;');
+		} else if (data.result.aqi.aqi <= 100) {
+			$(".air-general").attr('class', 'background-color:#FFde33;color:black;');
+		} else if (data.result.aqi.aqi <= 150) {
+			$(".air-general").attr('class', 'background-color:#FF9933;color:white;');
+		} else if (data.result.aqi.aqi <= 200) {
+			$(".air-general").attr('class', 'background-color:#CC0033;color:white;');
+		} else if (data.result.aqi.aqi <= 300) {
+			$(".air-general").attr('class', 'background-color:#660035;color:white;');
+		} else {
+			$(".air-general").attr('class', 'background-color:#660035;color:white;');
+		}
+
 
 		roseTrace('wind-status',data.result.status.windBearing);
 		roseTrace('wind-hour',data.result.hour.windBearing);
