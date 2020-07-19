@@ -328,7 +328,7 @@ class weatherbit extends eqLogic {
         $cmdpollen_level_weed = $this->getCmd(null, 'currentpollen_level_weed');
         $cmdpollen_level_grass = $this->getCmd(null, 'currentpollen_level_grass');
         $cmdpollen_level_tree = $this->getCmd(null, 'currentpollen_level_tree');
-        $return['aqi'] = array(
+        $return['pollen'] = array(
           'predominant_pollen_type' => $cmdpredominant_pollen_type->execCmd(),
           'pollen_level_weed' => $cmdpollen_level_weed->execCmd(),
           'pollen_level_grass' => $cmdpollen_level_grass->execCmd(),
