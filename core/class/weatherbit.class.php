@@ -668,6 +668,9 @@ class weatherbit extends eqLogic {
         $day = 'day';
       } else {
         $day = 'night';
+        if ($icone == 'sunny';) {
+          $icone = 'clear';
+        }
       }
       return 'wi-' . $day . '-' . $icone;
     }
