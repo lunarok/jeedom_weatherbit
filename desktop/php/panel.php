@@ -181,27 +181,29 @@ if (!isConnect()) {
 	<div style="font-size: 0.8em; position: relative; top: -10px;"><span class="aqi" data-l1key="aqi" style="font-size: 0.8em;"></span></div>
 				<div style="display: table; overflow: hidden; width: 95%">
 					<div style="display: table-row;">
-						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Dioxyde d&#145;azote">
+						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Dioxyde d&#145;azote">
 							<center><strong>NO</strong><sub style="font-size: 0.6em;">2</sub></center>
 							<span class="aqi" data-l1key="no2" style="font-size: 0.8em;"></span>
 						</div>
-						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
+						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
 							<center><strong>O</strong><sub style="font-size: 0.6em;">3</sub></center>
 							<span class="aqi" data-l1key="o3" style="font-size: 0.8em;"></span>
 						</div>
-						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
+						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
 							<center><strong>CO</strong></center>
 							<span class="aqi" data-l1key="co" style="font-size: 0.8em;"></span>
 						</div>
-						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
+						</div>
+						<div style="display: table-row;">
+						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
 							<center><strong>SO</strong><sub style="font-size: 0.6em;">2</sub></center>
 							<span class="aqi" data-l1key="so2" style="font-size: 0.8em;"></span>
 						</div>
-						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Particules fines &lt; 2,5&micro;m (particules de combustion...)">
+						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Particules fines &lt; 2,5&micro;m (particules de combustion...)">
 							<center><strong>PM</strong><sub style="font-size: 0.6em;">2,5</sub></center>
 				    			<span class="aqi" data-l1key="pm25" style="font-size: 0.8em;"></span>
 						</div>
-						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Particules fines &lt; 10&micro;m (poussi&egrave;re, pollen...)">
+						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Particules fines &lt; 10&micro;m (poussi&egrave;re, pollen...)">
 							<center><strong>PM</strong><sub style="font-size: 0.6em;">10</sub></center>
 							<span class="aqi" data-l1key="pm10" style="font-size: 0.8em;"></span>
 						</div>

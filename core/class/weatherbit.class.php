@@ -307,6 +307,22 @@ class weatherbit extends eqLogic {
             $return['previsions']['uvIndex'][] = $value['uv'];
         }
 
+        $cmdaqi = $this->getCmd(null, 'currentaqi');
+        $cmdpm10 = $this->getCmd(null, 'currentpm10');
+        $cmdpm25 = $this->getCmd(null, 'currentpm25');
+        $cmdco = $this->getCmd(null, 'currentco');
+        $cmdso2 = $this->getCmd(null, 'currentso2');
+        $cmdno2 = $this->getCmd(null, 'currentno2');
+        $cmdo3 = $this->getCmd(null, 'currento3');
+        $return['aqi'] = array(
+          'aqi' => $cmdaqi->execCmd(),
+          'no2' => $cmdno2->execCmd(),
+          'o3' => $cmdo3->execCmd(),
+          'co' => $cmdco->execCmd(),
+          'so2' => $cmdso2->execCmd(),
+          'pm10' => $cmdpm10->execCmd(),
+          'pm25' => $cmdpm25->execCmd(),
+        );
 
         $replace = $this->getReplace('current');
         $return['status'] = array(
