@@ -178,9 +178,9 @@ if (!isConnect()) {
 </div>
 <div class="col-md-4">
 	<center><strong> Qualité d'Air </strong></center></br>
-	<div style="display: table; overflow: hidden; position: relative; top: -10px;">
-				<div class="air-general" style="background-color:#aqicolor#;color:#aqifont#;"><center><span class="aqi" data-l1key="aqi" style="font-size: 0.8em;"></span></center></div>
-			</div>
+	<center><div style="display: table; overflow: hidden; position: relative; top: -10px;">
+				<center><div class="air-general" style="background-color:#aqicolor#;color:#aqifont#;"><center><span class="aqi" data-l1key="aqi" style="font-size: 0.8em;"></span></center></div></center>
+			</div></center>
 				<div style="display: table; overflow: hidden; width: 95%">
 					<div style="display: table-row;">
 						<div style="display: table-cell; width: 33%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Dioxyde d&#145;azote">
