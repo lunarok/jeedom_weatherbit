@@ -287,10 +287,16 @@ class weatherbit extends eqLogic {
 
     public function loadingData($eqlogic) {
         $return = array();
+        if ($this->getConfiguration('geoloc') == 'jeedom') {
+            $geolocval = config::byKey('info::latitude') . ',' . config::byKey('info::longitude');
+        } else {
+            $geolocval = geotravCmd::byEqLogicIdAndLogicalId($this->getConfiguration('geoloc'),'location:coordinate')->execCmd();
+        }
+        $apikey = $this->getConfiguration('apikey', '');
+        $lang = explode('_',config::byKey('language'));
+        $geo = explode(',',$geolocval);
+        $params = 'lat=' . $geo[0] . '&lon=' . $geo[1] . '&lang=' . $lang[0] . '&key=' . $apikey;
         $parsed_json = $this->callWeatherbit('forecast/hourly', $_params);
-        //log::add('weatherbit', 'debug', print_r($json_string, true));
-        //log::add('weatherbit', 'debug', print_r($parsed_json, true));
-        //log::add('weatherbit', 'debug', print_r($parsed_json['currently'], true));
 
         foreach ($parsed_json['hourly']['data'] as $value) {
             $return['previsions']['time'][] = $value['ts'] . '000';
