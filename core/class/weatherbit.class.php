@@ -285,7 +285,7 @@ class weatherbit extends eqLogic {
     }
 
 
-    public function loadingData($eqlogic) {
+    public function loadingData() {
         $return = array();
         if ($this->getConfiguration('geoloc') == 'jeedom') {
             $geolocval = config::byKey('info::latitude') . ',' . config::byKey('info::longitude');

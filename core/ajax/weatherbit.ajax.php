@@ -33,7 +33,7 @@ try {
     } else {
       $value = init('value');
     }
-    $eqLogic = eqLogic::byId(init('id'));
+    $eqLogic = eqLogic::byId($value);
     if (!is_object($eqLogic)) {
       return true;
     }
