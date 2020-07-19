@@ -171,6 +171,48 @@ if (!isConnect()) {
 </div>
 </div>
 </div>
+<div class="row">
+	<div class="col-md-4">
+		<center><strong> Azimuth </strong></center></br>
+
+</div>
+<div class="col-md-4">
+	<center><strong> Qualité d'Air </strong></center></br>
+	<div style="font-size: 0.8em; position: relative; top: -10px;"><span class="aqi" data-l1key="aqi" style="font-size: 0.8em;"></span></div>
+				<div style="display: table; overflow: hidden; width: 95%">
+					<div style="display: table-row;">
+						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Dioxyde d&#145;azote">
+							<center><strong>NO</strong><sub style="font-size: 0.6em;">2</sub></center>
+							<span class="aqi" data-l1key="no2" style="font-size: 0.8em;"></span>
+						</div>
+						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
+							<center><strong>O</strong><sub style="font-size: 0.6em;">3</sub></center>
+							<span class="aqi" data-l1key="o3" style="font-size: 0.8em;"></span>
+						</div>
+						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
+							<center><strong>CO</strong></center>
+							<span class="aqi" data-l1key="co" style="font-size: 0.8em;"></span>
+						</div>
+						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ozone">
+							<center><strong>SO</strong><sub style="font-size: 0.6em;">2</sub></center>
+							<span class="aqi" data-l1key="so2" style="font-size: 0.8em;"></span>
+						</div>
+						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Particules fines &lt; 2,5&micro;m (particules de combustion...)">
+							<center><strong>PM</strong><sub style="font-size: 0.6em;">2,5</sub></center>
+				    			<span class="aqi" data-l1key="pm25" style="font-size: 0.8em;"></span>
+						</div>
+						<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Particules fines &lt; 10&micro;m (poussi&egrave;re, pollen...)">
+							<center><strong>PM</strong><sub style="font-size: 0.6em;">10</sub></center>
+							<span class="aqi" data-l1key="pm10" style="font-size: 0.8em;"></span>
+						</div>
+					</div>
+				</div>
+</div>
+<div class="col-md-4">
+	<center><strong> Pollens </strong></center></br>
+
+</div>
+</div>
 </div>
 
 <script>
@@ -230,6 +272,11 @@ $(function () {
 		$('.weather-day3').value('');
 		for (var i in data.result.day3) {
 			$('.weather-day3[data-l1key=' + i + ']').value(data.result.day3[i]);
+		}
+
+		$('.aqi').value('');
+		for (var i in data.result.aqi) {
+			$('.aqi[data-l1key=' + i + ']').value(data.result.aqi[i]);
 		}
 
 		$("#icone-status").attr('class', 'wi ' + data.result.status.icon);
