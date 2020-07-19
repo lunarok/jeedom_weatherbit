@@ -335,6 +335,21 @@ class weatherbit extends eqLogic {
           'pollen_level_tree' => $cmdpollen_level_tree->execCmd(),
         );
 
+        $cmdsunrise = $this->getCmd(null, 'daily0sunrise');
+        $cmdsunset = $this->getCmd(null, 'daily0sunset');
+        $cmdmoonrise_ts = $this->getCmd(null, 'daily0moonrise_ts');
+        $cmdmoonset_ts = $this->getCmd(null, 'daily0moonset_ts');
+        $cmdelev_angle = $this->getCmd(null, 'daily0elev_angle');
+        $cmdh_angle = $this->getCmd(null, 'daily0h_angle');
+        $return['helio'] = array(
+          'sunrise' => $cmdsunrise->execCmd(),
+          'sunset' => $cmdsunset->execCmd(),
+          'moonrise_ts' => $cmdmoonrise_ts->execCmd(),
+          'moonset_ts' => $cmdmoonset_ts->execCmd(),
+          'elev_angle' => $cmdelev_angle->execCmd(),
+          'h_angle' => $cmdh_angle->execCmd(),
+        );
+
         $replace = $this->getReplace('current');
         $return['status'] = array(
           'summary' => $replace['#description#'],

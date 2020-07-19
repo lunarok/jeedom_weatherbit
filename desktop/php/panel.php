@@ -174,7 +174,20 @@ if (!isConnect()) {
 <div class="row">
 	<div class="col-md-4">
 		<center><strong> Azimuth </strong></center></br>
-
+		<div style="position : relative; left: 0px; margin-top: 10px;">
+		<div class="pull-right" style="margin-right: 15px;margin-top: 5px;">
+			<div id="azimuth" style="width: 80px; height: 80px;"></div>
+		</div>
+		<div class="pull-left" style="margin-left: 15px;margin-top: 5px;">
+			<div id="sunAlt" style="width: 80px; height: 80px;"></div>
+    </div><br/>
+		<div style="margin-left: 70px; margin-right: 100px; margin-top: 0px;">
+			<center><i class="far fa-sun fa-2x"></i></center>
+			<center style="font-size: 1em; position: relative;left:3px;cursor:default;"><span class="helio" data-l1key="sunrise" style="font-size: 0.8em;"></span> - <span class="helio" data-l1key="sunset" style="font-size: 0.8em;"></span></center>
+			<center><i class="far fa-moon fa-2x"></i></center>
+			<center style="font-size: 1em; position: relative;left:3px;cursor:default;"><span class="helio" data-l1key="moonrise" style="font-size: 0.8em;"></span> - <span class="helio" data-l1key="moonset" style="font-size: 0.8em;"></span></center>
+		</div>
+	</div>
 </div>
 <div class="col-md-4">
 	<center><strong> Qualité d'Air </strong></center></br>
@@ -321,6 +334,11 @@ $(function () {
 		$('.pollen').value('');
 		for (var i in data.result.pollen) {
 			$('.pollen[data-l1key=' + i + ']').value(data.result.pollen[i]);
+		}
+
+		$('.helio').value('');
+		for (var i in data.result.helio) {
+			$('.helio[data-l1key=' + i + ']').value(data.result.helio[i]);
 		}
 
 		$("#icone-status").attr('class', 'wi ' + data.result.status.icon);
