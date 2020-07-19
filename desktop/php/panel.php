@@ -348,7 +348,7 @@ $(function () {
 }
 
 function roseTrace(id,value){
-	$color = $("html").css("bg-color");
+	$color = $('.backgroundforJeedom').css("bg-color");
 	new Highcharts.Chart({
 		chart: {
 			renderTo: id,
