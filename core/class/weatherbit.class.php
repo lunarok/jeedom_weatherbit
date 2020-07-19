@@ -656,12 +656,12 @@ class weatherbit extends eqLogic {
       } else {
         $icone = 'rain';
       }
-      if ($pod == 'd') {
+      if (($pod == 'd') || (strpos('daily', $_step) !== false)) {
         $day = 'day';
       } else {
         $day = 'night';
       }
-      return $day . '-' . $icone;
+      return $icone . '-' . $day;
     }
 
 }
