@@ -226,16 +226,6 @@ $(function () {
 			$('.weather-day3[data-l1key=' + i + ']').value(data.result.day3[i]);
 		}
 
-		$color = $("span").css("color");
-		var skycons = new Skycons({'color':$color});
-		skycons.set('icone-status', data.result.status.icon);
-		skycons.set('icone-hour', data.result.hour.icon);
-		skycons.set('icone-day0', data.result.day0.icon);
-		skycons.set('icone-day1', data.result.day1.icon);
-		skycons.set('icone-day2', data.result.day2.icon);
-		skycons.set('icone-day3', data.result.day3.icon);
-		skycons.play();
-
 		roseTrace('wind-status',data.result.status.windBearing);
 		roseTrace('wind-hour',data.result.hour.windBearing);
 		roseTrace('wind-day0',data.result.day0.windBearing);
