@@ -419,6 +419,7 @@ class weatherbit extends eqLogic {
           'temperatureMin' => $replace['#app_min_temp#'] . '°C',
           'temperatureMax' => $replace['#app_max_temp#'] . '°C',
         );
+        log::add('weatherbit', 'debug', 'result : ' . print_r($result,true));
         return $return;
     }
 
