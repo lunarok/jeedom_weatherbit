@@ -5,8 +5,6 @@ if (!isConnect()) {
 
 ?>
 
-<script src="plugins/weatherbit/desktop/js/skycons.js"></script>
-
 <link rel="stylesheet" type="text/css" href="plugins/weatherbit/desktop/weather-icons/css/weather-icons.min.css" />
 
 <div class="container-fluid weatherbit-panel">

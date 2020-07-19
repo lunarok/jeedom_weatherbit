@@ -508,8 +508,7 @@ class weatherbit extends eqLogic {
                   $replace['#hight_temperature#'] = is_object($temperature_max) ? round($temperature_max->execCmd()) : '';
                   $replace['#tempid#'] = is_object($temperature_max) ? $temperature_max->getId() : '';
 
-                  $icone = $this->getCmd(null, 'daily0weather::code');
-                  $replace['#icone#'] = is_object($icone) ? $icone->getId() : '';
+                  $replace['#icone#'] = $this->getIcone('daily0');
                 } else if ($i == 1) {
                   $replace['#day#'] = '+ 1h';
                   $temperature_min = $this->getCmd(null, 'hourly1temp');
@@ -519,8 +518,7 @@ class weatherbit extends eqLogic {
                   $replace['#hight_temperature#'] = is_object($temperature_max) ? round($temperature_max->execCmd()) : '';
                   $replace['#tempid#'] = is_object($temperature_max) ? $temperature_max->getId() : '';
 
-                  $icone = $this->getCmd(null, 'hourly1weather::code');
-                  $replace['#icone#'] = is_object($icone) ? $icone->getId() : '';
+                  $replace['#icone#'] = $this->getIcone('hourly1');
                 } else {
                   if ($i == 2) {
                     $step = 'daily1';
@@ -539,7 +537,7 @@ class weatherbit extends eqLogic {
                   $replace['#tempid#'] = is_object($temperature_max) ? $temperature_max->getId() : '';
 
                   $icone = $this->getCmd(null, $step . 'weather::code');
-                  $replace['#icone#'] = is_object($icone) ? $icone->getId() : '';
+                  $replace['#icone#'] = $this->getIcone($step);
                 }
 
                 $html_forecast .= template_replace($replace, $forcast_template);
@@ -592,27 +590,6 @@ class weatherbit extends eqLogic {
         }
 
         $replace['#icone#'] = $this->getIcone('current');
-        $replace['#iconeid#'] = $this->getId();
-
-        $icone1 = $this->getCmd(null, 'currentweather::code');
-        $replace['#icone1#'] = $this->getIcone('current');
-        $replace['#iconeid1#'] = is_object($icone1) ? $icone1->getId() : '';
-
-        $icone2 = $this->getCmd(null, 'hourly1weather::code');
-        $replace['#icone2#'] = $this->getIcone('hourly1');
-        $replace['#iconeid2#'] = is_object($icone2) ? $icone2->getId() : '';
-
-        $icone3 = $this->getCmd(null, 'daily1weather::code');
-        $replace['#icone3#'] = $this->getIcone('daily1');
-        $replace['#iconeid3#'] = is_object($icone3) ? $icone3->getId() : '';
-
-        $icone4 = $this->getCmd(null, 'daily2weather::code');
-        $replace['#icone4#'] = $this->getIcone('daily2');
-        $replace['#iconeid4#'] = is_object($icone4) ? $icone4->getId() : '';
-
-        $icone5 = $this->getCmd(null, 'daily3weather::code');
-        $replace['#icone5#'] = $this->getIcone('daily3');
-        $replace['#iconeid5#'] = is_object($icone5) ? $icone5->getId() : '';
 
         $parameters = $this->getDisplay('parameters');
         if (is_array($parameters)) {
@@ -661,7 +638,7 @@ class weatherbit extends eqLogic {
       } else {
         $day = 'night';
       }
-      return $icone . '-' . $day;
+      return 'wi-' . $day . '-' . $icone;
     }
 
 }

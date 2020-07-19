@@ -4,7 +4,7 @@
     </center>
  <div style="position : relative; left : 15px;" class="tooltips" title="#collectDate#">
     <span class="pull-left">
-        <canvas id="weatherbit#iconeid#" width="56" height="56"></canvas>
+        <i class="wi #icone#" style="font-size: 56px;"></i>
     </span>
     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
         <div id="windDirection#uid#" style="width: 80px; height: 80px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#windid#"></div>
@@ -21,21 +21,8 @@
     <center>#forecast#</center>
 </div>
 
-<script src="plugins/weatherbit/desktop/js/skycons.js"></script>
+<link rel="stylesheet" type="text/css" href="plugins/weatherbit/desktop/weather-icons/css/weather-icons.min.css" />
 
-<script>
-   $color = $("span").css("color");
-  var skycons = new Skycons({'color':$color});
-
-  skycons.set('weatherbit#iconeid#', '#icone#');
-  skycons.set('weatherbit#iconeid1#', '#icone1#');
-  skycons.set('weatherbit#iconeid2#', '#icone2#');
-  skycons.set('weatherbit#iconeid3#', '#icone3#');
-  skycons.set('weatherbit#iconeid4#', '#icone4#');
-  skycons.set('weatherbit#iconeid5#', '#icone5#');
-
-  skycons.play();
-</script>
 <script>
 if ('#refresh#' != ''){
 			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
