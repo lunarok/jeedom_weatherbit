@@ -233,11 +233,11 @@ $(function () {
 		}
 
 		$("#icone-status").attr('class', 'wi ' . data.result.status.icon);
-		$("#icone-status").attr('class', 'wi ' . data.result.hour.icon);
-		$("#icone-status").attr('class', 'wi ' . data.result.day0.icon);
-		$("#icone-status").attr('class', 'wi ' . data.result.day1.icon);
-		$("#icone-status").attr('class', 'wi ' . data.result.day2.icon);
-		$("#icone-status").attr('class', 'wi ' . data.result.day3.icon);
+		$("#icone-hour").attr('class', 'wi ' . data.result.hour.icon);
+		$("#icone-day0").attr('class', 'wi ' . data.result.day0.icon);
+		$("#icone-day1").attr('class', 'wi ' . data.result.day1.icon);
+		$("#icone-day2").attr('class', 'wi ' . data.result.day2.icon);
+		$("#icone-day3").attr('class', 'wi ' . data.result.day3.icon);
 
 		roseTrace('wind-status',data.result.status.windBearing);
 		roseTrace('wind-hour',data.result.hour.windBearing);
