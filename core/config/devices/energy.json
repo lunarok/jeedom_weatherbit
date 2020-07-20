@@ -1,0 +1,69 @@
+{
+  "commands": [
+    {
+      "name": "Température en thermomètre mouillé",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "temp_wetbulb"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "temp_wetbulb"
+    },
+    {
+      "name": "Heures d'ensoleillement",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "sun_hours"
+      },
+      "isVisible": 0,
+      "unite": "h",
+      "logicalId": "sun_hours"
+    },
+    {
+      "name": "Degrés de refroidissement",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "cdd"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "cdd"
+    },
+    {
+      "name": "Degrés de chuaffage",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "hdd"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "hdd"
+    },
+    {
+      "name": "Température moyenne",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "hdd"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "avg_temp"
+    }
+  ]
+}
