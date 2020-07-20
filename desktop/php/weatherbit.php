@@ -156,6 +156,13 @@ $eqLogics = eqLogic::byType('weatherbit');
               </div>
             </div>
 
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Température de référence pour les dregés chauffe/clim}}</label>
+              <div class="col-sm-3">
+                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="treshold"/>
+              </div>
+            </div>
+
           </fieldset>
         </form>
       </div>
