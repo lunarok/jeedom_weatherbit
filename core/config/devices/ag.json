@@ -1,0 +1,69 @@
+{
+  "commands": [
+    {
+      "name": "Evapotranspiration",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "evapotranspiration"
+      },
+      "isVisible": 0,
+      "unite": "mm",
+      "logicalId": "evapotranspiration"
+    },
+    {
+      "name": "Humidité du sol - 0-10cm",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "soilm_0_10cm"
+      },
+      "isVisible": 0,
+      "unite": "mm",
+      "logicalId": "soilm_0_10cm"
+    },
+    {
+      "name": "Humidité du sol - 10-40cm",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "soilm_10_40cm"
+      },
+      "isVisible": 0,
+      "unite": "mm",
+      "logicalId": "soilm_10_40cm"
+    },
+    {
+      "name": "Température du sol - 0-10cm",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "soilt_0_10cm"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "soilt_0_10cm"
+    },
+    {
+      "name": "Température du sol - 10-40cm",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "soilt_10_40cm"
+      },
+      "isVisible": 0,
+      "unite": "°C",
+      "logicalId": "soilt_10_40cm"
+    }
+  ]
+}

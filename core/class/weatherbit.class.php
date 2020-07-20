@@ -143,6 +143,10 @@ class weatherbit extends eqLogic {
             $this->loadCmdFromConf('energy', 'daily1');
             $this->loadCmdFromConf('energy', 'daily2');
             $this->loadCmdFromConf('energy', 'daily3');
+            $this->loadCmdFromConf('ag', 'daily0');
+            $this->loadCmdFromConf('ag', 'daily1');
+            $this->loadCmdFromConf('ag', 'daily2');
+            $this->loadCmdFromConf('ag', 'daily3');
           }
           $this->getInformations();
         } else {
@@ -179,6 +183,9 @@ class weatherbit extends eqLogic {
             case 'energy':
               $cmd_energy[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
               break;
+            case 'ag':
+              $cmd_ag[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
+              break;
           }
         }
         $this->getCurrent($params, $cmd_weather);
@@ -188,6 +195,7 @@ class weatherbit extends eqLogic {
         $this->getForecastHourly($params, $cmd_weather);
         $this->getForecastAirquality($params, $cmd_aqi);
         $this->getForecastEnergy($params, $cmd_energy);
+        $this->getForecastAgweather($params, $cmd_ag);
         $this->getUsage();
         $this->refreshWidget();
     }
@@ -267,7 +275,7 @@ class weatherbit extends eqLogic {
       }
     }
 
-    public function getForecastEnergy($_params, $_cmdlist) {
+    public function getForecastEnergy($_params, $_cmdlist) {forecast/agweather
       $_params = $_params . '&threshold=' . $this->getConfiguration('treshold', '20');
       $parsed_json = $this->callWeatherbit('forecast/energy', $_params);
       foreach ($_cmdlist['daily0'] as $value) {
@@ -297,6 +305,22 @@ class weatherbit extends eqLogic {
         } else {
           $this->checkAndUpdateCmd('daily3' . $value, $parsed_json['data'][3][$value]);
         }
+      }
+    }
+
+    public function getForecastAgweather($_params, $_cmdlist) {
+      $parsed_json = $this->callWeatherbit('forecast/agweather', $_params);
+      foreach ($_cmdlist['daily0'] as $value) {
+        $this->checkAndUpdateCmd('daily0' . $value, $parsed_json['data'][0][$value]);
+      }
+      foreach ($_cmdlist['daily1'] as $value) {
+        $this->checkAndUpdateCmd('daily1' . $value, $parsed_json['data'][1][$value]);
+      }
+      foreach ($_cmdlist['daily2'] as $value) {
+        $this->checkAndUpdateCmd('daily2' . $value, $parsed_json['data'][2][$value]);
+      }
+      foreach ($_cmdlist['daily3'] as $value) {
+        $this->checkAndUpdateCmd('daily3' . $value, $parsed_json['data'][3][$value]);
       }
     }
 
