@@ -267,16 +267,32 @@ class weatherbit extends eqLogic {
       $_params = $_params . '&threshold=' . $this->getConfiguration('treshold', '20');
       $parsed_json = $this->callWeatherbit('forecast/energy', $_params);
       foreach ($_cmdlist['daily0'] as $value) {
-        $this->checkAndUpdateCmd('daily0' . $value, $parsed_json['data'][0][$value]);
+        if ($value == 'avg_temp') {
+          $this->checkAndUpdateCmd('daily0' . $value, $parsed_json['data'][0]['temp']);
+        } else {
+          $this->checkAndUpdateCmd('daily0' . $value, $parsed_json['data'][0][$value]);
+        }
       }
       foreach ($_cmdlist['daily1'] as $value) {
-        $this->checkAndUpdateCmd('daily1' . $value, $parsed_json['data'][1][$value]);
+        if ($value == 'avg_temp') {
+          $this->checkAndUpdateCmd('daily1' . $value, $parsed_json['data'][1]['temp']);
+        } else {
+          $this->checkAndUpdateCmd('daily1' . $value, $parsed_json['data'][1][$value]);
+        }
       }
       foreach ($_cmdlist['daily2'] as $value) {
-        $this->checkAndUpdateCmd('daily2' . $value, $parsed_json['data'][2][$value]);
+        if ($value == 'avg_temp') {
+          $this->checkAndUpdateCmd('daily2' . $value, $parsed_json['data'][2]['temp']);
+        } else {
+          $this->checkAndUpdateCmd('daily2' . $value, $parsed_json['data'][2][$value]);
+        }
       }
       foreach ($_cmdlist['daily3'] as $value) {
-        $this->checkAndUpdateCmd('daily3' . $value, $parsed_json['data'][3][$value]);
+        if ($value == 'avg_temp') {
+          $this->checkAndUpdateCmd('daily3' . $value, $parsed_json['data'][3]['temp']);
+        } else {
+          $this->checkAndUpdateCmd('daily3' . $value, $parsed_json['data'][3][$value]);
+        }
       }
     }
 
