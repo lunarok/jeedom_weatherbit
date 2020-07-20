@@ -122,6 +122,10 @@ class weatherbit extends eqLogic {
             $this->loadCmdFromConf('energy', 'daily1');
             $this->loadCmdFromConf('energy', 'daily2');
             $this->loadCmdFromConf('energy', 'daily3');
+            $this->loadCmdFromConf('ag', 'daily0');
+            $this->loadCmdFromConf('ag', 'daily1');
+            $this->loadCmdFromConf('ag', 'daily2');
+            $this->loadCmdFromConf('ag', 'daily3');
           } else {
             $this->loadCmdFromConf('weather', 'current');
             $this->loadCmdFromConf('weather', 'daily0');
