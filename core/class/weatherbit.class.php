@@ -113,7 +113,7 @@ class weatherbit extends eqLogic {
         }
     }
 
-    public function postSave() {
+    public function postAjax() {
         if (null !== ($this->getConfiguration('geoloc', '')) && $this->getConfiguration('geoloc', '') != 'none') {
           $cmds = $this->getCmd();
           if (count($cmds) > 0) {
@@ -130,13 +130,15 @@ class weatherbit extends eqLogic {
             $this->loadCmdFromConf('weather', 'hourly4');
             $this->loadCmdFromConf('weather', 'hourly5');
             $this->loadCmdFromConf('weather', 'hourly6');
-            $this->loadCmdFromConf('weather', 'hourly6');
-            $this->loadCmdFromConf('weather', 'hourly6');
             $this->loadCmdFromConf('alerts', 'current');
             $this->loadCmdFromConf('airquality', 'current');
             $this->loadCmdFromConf('airquality', 'forecast1');
             $this->loadCmdFromConf('airquality', 'forecast2');
             $this->loadCmdFromConf('airquality', 'forecast24');
+            $this->loadCmdFromConf('energy', 'daily0');
+            $this->loadCmdFromConf('energy', 'daily1');
+            $this->loadCmdFromConf('energy', 'daily2');
+            $this->loadCmdFromConf('energy', 'daily3');
           }
           $this->getInformations();
         } else {
@@ -170,6 +172,9 @@ class weatherbit extends eqLogic {
             case 'airquality':
               $cmd_aqi[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
               break;
+            case 'energy':
+              $cmd_energy[$liste_cmd->getConfiguration('step')][] = $liste_cmd->getConfiguration('apiId');
+              break;
           }
         }
         $this->getCurrent($params, $cmd_weather);
@@ -177,7 +182,8 @@ class weatherbit extends eqLogic {
         $this->getAirquality($params, $cmd_aqi);
         $this->getForecastDaily($params, $cmd_weather);
         $this->getForecastHourly($params, $cmd_weather);
-        $this->getForecastAirquality($params, $cmd_aqi);
+        $this->getForecastAirquality($params, $cmd_aqi);getForecastEnergy
+        $this->getForecastEnergy($params, $cmd_energy);
         $this->getUsage();
         $this->refreshWidget();
     }
@@ -258,6 +264,7 @@ class weatherbit extends eqLogic {
     }
 
     public function getForecastEnergy($_params, $_cmdlist) {
+        $_params = $_params . '&threshold=' . $this->getConfiguration('treshold', '20');
       $parsed_json = $this->callWeatherbit('forecast/energy', $_params);
     }
 
