@@ -275,7 +275,7 @@ class weatherbit extends eqLogic {
       }
     }
 
-    public function getForecastEnergy($_params, $_cmdlist) {forecast/agweather
+    public function getForecastEnergy($_params, $_cmdlist) {
       $_params = $_params . '&threshold=' . $this->getConfiguration('treshold', '20');
       $parsed_json = $this->callWeatherbit('forecast/energy', $_params);
       foreach ($_cmdlist['daily0'] as $value) {
