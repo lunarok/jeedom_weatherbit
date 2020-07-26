@@ -38,7 +38,8 @@
       "isVisible": 0,
       "unite": "m/s",
       "logicalId": "wind_spd"
-    },{
+    },
+    {
       "name": "Vent - Direction",
       "type": "info",
       "subtype": "numeric",
@@ -50,6 +51,19 @@
       "isVisible": 0,
       "unite": "°",
       "logicalId": "wind_dir"
+    },
+    {
+      "name": "Vent - Direction Usage",
+      "type": "info",
+      "subtype": "numeric",
+      "configuration" : {
+        "category" : "",
+        "step" : "",
+        "apiId" : "wind_dir_bis"
+      },
+      "isVisible": 0,
+      "unite": "°",
+      "logicalId": "wind_dir_bis"
     },
     {
       "name": "Température",
