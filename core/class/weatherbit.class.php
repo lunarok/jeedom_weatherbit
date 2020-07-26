@@ -205,11 +205,16 @@ class weatherbit extends eqLogic {
     }
 
     public function setWeather($_json, $_category, $_cmdlist) {
-      $list = array("weather::icon", "weather::code", "weather::description");
+      $list = array("weather::icon", "weather::code", "weather::description", "wind_dir_bis");
       foreach ($_cmdlist as $value) {
         if (in_array($value, $list)) {
-          $value2 = str_replace('weather::','',$value);
-          $this->checkAndUpdateCmd($_category . $value, $_json['weather'][$value2]);
+          if ($value == 'wind_dir_bis') {
+             $wind_dir_bis = $_json['wind_dir'] > 179 ? $_json['wind_dir'] -180 : $_json['wind_dir'] + 180;
+             $this->checkAndUpdateCmd($_category . 'wind_dir_bis', $wind_dir_bis);
+          } else {
+              $value2 = str_replace('weather::','',$value);
+              $this->checkAndUpdateCmd($_category . $value, $_json['weather'][$value2]);
+          }
         } else {
           if ($value == 'sunrise' || $value == 'sunset') {
             if ($_category == 'current') {
@@ -547,7 +552,7 @@ class weatherbit extends eqLogic {
         $replace['#pop#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
         $cmd = $this->getCmd(null, $_step . 'wind_spd');
         $replace['#wind_spd#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
-        $cmd = $this->getCmd(null, $_step . 'wind_dir');
+        $cmd = $this->getCmd(null, $_step . 'wind_dir_bis');
         $replace['#wind_dir#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
         $cmd = $this->getCmd(null, $_step . 'clouds');
         $replace['#clouds#'] = is_object($cmd) ? round($cmd->execCmd()) : '';
@@ -671,7 +676,7 @@ class weatherbit extends eqLogic {
         $replace['#sunset#'] = is_object($sunset) ? substr_replace($sunset->execCmd(),':',-2,0) : '';
         $replace['#sunsetid#'] = is_object($sunset) ? $sunset->getId() : '';
 
-        $wind_direction = $this->getCmd(null, 'currentwind_dir');
+        $wind_direction = $this->getCmd(null, 'currentwind_dir_bis');
         $replace['#wind_direction#'] = is_object($wind_direction) ? $wind_direction->execCmd() : 0;
 
         $refresh = $this->getCmd(null, 'refresh');
