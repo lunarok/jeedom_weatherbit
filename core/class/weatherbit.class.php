@@ -64,7 +64,7 @@ class weatherbit extends eqLogic {
         $command['configuration']['category'] = $_type;
         $command['configuration']['step'] = $_step;
         if (strpos($_step, 'current') !== false) {
-          $list = array('wind_gust_spd','app_max_temp','app_min_temp','pop','snow_depth','dni','moon_phase','moon_phase_lunation','moonrise_ts','moonset_ts');
+          $list = array('wind_gust_spd','max_temp','min_temp','app_max_temp','app_min_temp','pop','snow_depth','dni','moon_phase','moon_phase_lunation','moonrise_ts','moonset_ts');
           if (in_array($command['configuration']['apiId'], $list)) {
             continue;
           }
