@@ -114,19 +114,23 @@ class weatherbit extends eqLogic {
     }
 
     public function postUpdate() {
-        if (null !== ($this->getConfiguration('geoloc', '')) && $this->getConfiguration('geoloc', '') != 'none') {
-          $cmds = $this->getCmd();
-          if (count($cmds) > 0) {
-            //
+        if ('' != $this->getConfiguration('geoloc', '')) { 
+            $this->loadCmdFromConf('alerts', 'current');
+            $this->loadCmdFromConf('airquality', 'current');
+            $this->loadCmdFromConf('airquality', 'forecast1');
+            $this->loadCmdFromConf('airquality', 'forecast2');
+            $this->loadCmdFromConf('airquality', 'forecast24');
             $this->loadCmdFromConf('energy', 'daily0');
             $this->loadCmdFromConf('energy', 'daily1');
             $this->loadCmdFromConf('energy', 'daily2');
             $this->loadCmdFromConf('energy', 'daily3');
-            $this->loadCmdFromConf('ag', 'daily0');
-            $this->loadCmdFromConf('ag', 'daily1');
-            $this->loadCmdFromConf('ag', 'daily2');
-            $this->loadCmdFromConf('ag', 'daily3');
-          } else {
+        } else {
+          log::add('weatherbit', 'error', 'geoloc non saisie');
+        }
+    }
+    
+    public function postSave() {
+        if ('' != $this->getConfiguration('geoloc', '')) { 
             $this->loadCmdFromConf('weather', 'current');
             $this->loadCmdFromConf('weather', 'daily0');
             $this->loadCmdFromConf('weather', 'daily1');
@@ -138,20 +142,17 @@ class weatherbit extends eqLogic {
             $this->loadCmdFromConf('weather', 'hourly4');
             $this->loadCmdFromConf('weather', 'hourly5');
             $this->loadCmdFromConf('weather', 'hourly6');
-            $this->loadCmdFromConf('alerts', 'current');
-            $this->loadCmdFromConf('airquality', 'current');
-            $this->loadCmdFromConf('airquality', 'forecast1');
-            $this->loadCmdFromConf('airquality', 'forecast2');
-            $this->loadCmdFromConf('airquality', 'forecast24');
-            $this->loadCmdFromConf('energy', 'daily0');
-            $this->loadCmdFromConf('energy', 'daily1');
-            $this->loadCmdFromConf('energy', 'daily2');
-            $this->loadCmdFromConf('energy', 'daily3');
+        } else {
+          log::add('weatherbit', 'error', 'geoloc non saisie');
+        }
+    }
+    
+    public function postAjax() {
+        if ('' != $this->getConfiguration('geoloc', '')) { 
             $this->loadCmdFromConf('ag', 'daily0');
             $this->loadCmdFromConf('ag', 'daily1');
             $this->loadCmdFromConf('ag', 'daily2');
             $this->loadCmdFromConf('ag', 'daily3');
-          }
           $this->getInformations();
         } else {
           log::add('weatherbit', 'error', 'geoloc non saisie');
