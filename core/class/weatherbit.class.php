@@ -114,7 +114,7 @@ class weatherbit extends eqLogic {
   }
 
   public static function cronTrigger($_options) {
-    log::add('weatherbit', 'debug', 'cronTrigger ' . $_options['weatherbit_id']);$this->getCmd()
+    log::add('weatherbit', 'debug', 'cronTrigger ' . $_options['weatherbit_id']);
     $eqLogic = eqLogic::byId($_options['weatherbit_id']);
     if (!is_object($eqLogic)) {
       return true;
