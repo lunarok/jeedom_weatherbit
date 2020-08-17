@@ -113,8 +113,20 @@ class weatherbit extends eqLogic {
         }
     }
 
-    public function postUpdate() {
-        if ('' != $this->getConfiguration('geoloc', '')) { 
+    public static function cronTrigger() {
+      $eqLogic = eqLogic::byId(init('id'));
+      if (!is_object($eqLogic)) {
+        return true;
+      }
+      $eqLogic->setCmds();
+      $cron = cron::byClassAndFunction('weatherbit', 'cronTrigger', array('weatherbit_id' => $eqLogic->getId()));
+      if (is_object($cron)) {
+        $cron->remove();
+      }
+    }
+
+    public function setCmds() {
+        if ('' != $this->getConfiguration('geoloc', '')) {
             $this->loadCmdFromConf('alerts', 'current');
             $this->loadCmdFromConf('airquality', 'current');
             $this->loadCmdFromConf('airquality', 'forecast1');
@@ -124,13 +136,6 @@ class weatherbit extends eqLogic {
             $this->loadCmdFromConf('energy', 'daily1');
             $this->loadCmdFromConf('energy', 'daily2');
             $this->loadCmdFromConf('energy', 'daily3');
-        } else {
-          log::add('weatherbit', 'error', 'geoloc non saisie');
-        }
-    }
-    
-    public function postSave() {
-        if ('' != $this->getConfiguration('geoloc', '')) { 
             $this->loadCmdFromConf('weather', 'current');
             $this->loadCmdFromConf('weather', 'daily0');
             $this->loadCmdFromConf('weather', 'daily1');
@@ -142,13 +147,6 @@ class weatherbit extends eqLogic {
             $this->loadCmdFromConf('weather', 'hourly4');
             $this->loadCmdFromConf('weather', 'hourly5');
             $this->loadCmdFromConf('weather', 'hourly6');
-        } else {
-          log::add('weatherbit', 'error', 'geoloc non saisie');
-        }
-    }
-    
-    public function postAjax() {
-        if ('' != $this->getConfiguration('geoloc', '')) { 
             $this->loadCmdFromConf('ag', 'daily0');
             $this->loadCmdFromConf('ag', 'daily1');
             $this->loadCmdFromConf('ag', 'daily2');
@@ -157,6 +155,22 @@ class weatherbit extends eqLogic {
         } else {
           log::add('weatherbit', 'error', 'geoloc non saisie');
         }
+    }
+
+    public function postAjax() {
+      $time = time() + 60;
+      $cron = cron::byClassAndFunction('weatherbit', 'cronTrigger', array('weatherbit_id' => $this->getId()));
+      if (!is_object($cron)) {
+        if ($updateOnly == 1) {
+          return;
+        }
+        $cron = new cron();
+        $cron->setClass('weatherbit');
+        $cron->setFunction('cronTrigger');
+        $cron->setOption(array('weatherbit_id' => $this->getId()));
+      }
+      $cron->setSchedule(date('i', $time) . ' ' . date('H', $time) . ' ' . date('d', $time) . ' ' . date('m', $time) . ' * ' . date('Y', $time));
+      $cron->save();
     }
 
 
