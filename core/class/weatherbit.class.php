@@ -153,14 +153,15 @@ class weatherbit extends eqLogic {
       $this->loadCmdFromConf('ag', 'daily1');
       $this->loadCmdFromConf('ag', 'daily2');
       $this->loadCmdFromConf('ag', 'daily3');
-      $this->getInformations();
+      $this->setConfiguration('version','42');
+      $this->save();
     } else {
       log::add('weatherbit', 'error', 'geoloc non saisie');
     }
   }
 
   public function postAjax() {
-    if ($this->getIsEnable()) {
+    if ($this->getIsEnable() && ($this->getConfiguration('version') != '42')) {
       $time = time() + 90;
       $cron = cron::byClassAndFunction('weatherbit', 'cronTrigger', array('weatherbit_id' => $this->getId()));
       if (!is_object($cron)) {
