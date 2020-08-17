@@ -163,9 +163,6 @@ class weatherbit extends eqLogic {
       $time = time() + 90;
       $cron = cron::byClassAndFunction('weatherbit', 'cronTrigger', array('weatherbit_id' => $this->getId()));
       if (!is_object($cron)) {
-        if ($updateOnly == 1) {
-          return;
-        }
         $cron = new cron();
         $cron->setClass('weatherbit');
         $cron->setFunction('cronTrigger');
