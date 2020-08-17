@@ -121,10 +121,6 @@ class weatherbit extends eqLogic {
     }
     log::add('weatherbit', 'debug', 'cronTrigger ' . count($eqLogic->getCmd()));
     $eqLogic->setCmds();
-    $cron = cron::byClassAndFunction('weatherbit', 'cronTrigger', array('weatherbit_id' => $eqLogic->getId()));
-    if (is_object($cron)) {
-      $cron->remove();
-    }
   }
 
   public function setCmds() {
@@ -171,6 +167,7 @@ class weatherbit extends eqLogic {
         $cron->setOption(array('weatherbit_id' => $this->getId()));
       }
       $cron->setSchedule(date('i', $time) . ' ' . date('H', $time) . ' ' . date('d', $time) . ' ' . date('m', $time) . ' * ' . date('Y', $time));
+      $cron->setOnce(1);
       $cron->save();
     }
   }
