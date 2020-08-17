@@ -119,7 +119,7 @@ class weatherbit extends eqLogic {
     if (!is_object($eqLogic)) {
       return true;
     }
-    log::add('weatherbit', 'debug', 'cronTrigger ' . count($this->getCmd()));
+    log::add('weatherbit', 'debug', 'cronTrigger ' . count($eqLogic->getCmd()));
     $eqLogic->setCmds();
     $cron = cron::byClassAndFunction('weatherbit', 'cronTrigger', array('weatherbit_id' => $eqLogic->getId()));
     if (is_object($cron)) {
