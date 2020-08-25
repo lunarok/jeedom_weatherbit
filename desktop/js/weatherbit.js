@@ -14,6 +14,54 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+$('#btCurrent').on('click', function () {
+  createCmd('current');
+});
+
+$('#btAqi').on('click', function () {
+  createCmd('aqi');
+});
+
+$('#btEnergy').on('click', function () {
+  createCmd('energy');
+});
+
+$('#btHourly').on('click', function () {
+  createCmd('hourly');
+});
+
+$('#btDaily').on('click', function () {
+  createCmd('daily');
+});
+
+$('#btAg').on('click', function () {
+  createCmd('ag');
+});
+
+function createCmd(type) {
+ $.ajax({// fonction permettant de faire de l'ajax
+   type: "POST", // methode de transmission des données au fichier php
+   url: "plugins/weatherbit/core/ajax/weatherbit.ajax.php", // url du fichier php
+   data: {
+     action: "createcmd",
+     id: $('.eqLogicAttr[data-l1key=id]').value(),
+     type: type,
+   },
+   dataType: 'json',
+   error: function(request, status, error) {
+     handleAjaxError(request, status, error);
+   },
+   success: function(data) { // si l'appel a bien fonctionné
+
+     if (data.state != 'ok') {
+       $('#div_alert').showAlert({message: data.result, level: 'danger'});
+       return;
+     }
+     $('#div_alert').showAlert({message: 'Recherche ok', level: 'success'});
+     window.location.reload();
+   }
+ });
+}
 
 $("#butCol").click(function(){
   $("#hidCol").toggle("slow");

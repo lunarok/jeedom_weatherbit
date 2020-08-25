@@ -163,6 +163,48 @@ $eqLogics = eqLogic::byType('weatherbit');
               </div>
             </div>
 
+            <div class="form-group">
+              <label class="col-sm-3 control-label"></label>
+              <div class="col-sm-3">
+                <a class="btn btn-default" id='btCurrent'><i class="fas fa-umbrella"></i> {{Créer les commandes Météo actuelle}}</a>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label"></label>
+              <div class="col-sm-3">
+                <a class="btn btn-default" id='btHourly'><i class="fas fa-umbrella"></i> {{Créer les commandes Météo des prochaines heures}}</a>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label"></label>
+              <div class="col-sm-3">
+                <a class="btn btn-default" id='btDaily'><i class="fas fa-umbrella"></i> {{Créer les commandes Météo des prochains jours}}</a>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label"></label>
+              <div class="col-sm-3">
+                <a class="btn btn-default" id='btAqi'><i class="fas fa-umbrella"></i> {{Créer les commandes Qualité de l'air}}</a>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label"></label>
+              <div class="col-sm-3">
+                <a class="btn btn-default" id='btEnergy'><i class="fas fa-umbrella"></i> {{Créer les commandes Energie}}</a>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label"></label>
+              <div class="col-sm-3">
+                <a class="btn btn-default" id='btAg'><i class="fas fa-umbrella"></i> {{Créer les commandes Météo du sol}}</a>
+              </div>
+            </div>
+
           </fieldset>
         </form>
       </div>

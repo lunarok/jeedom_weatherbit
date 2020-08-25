@@ -123,55 +123,48 @@ class weatherbit extends eqLogic {
     $eqLogic->setCmds();
   }
 
-  public function setCmds() {
+  public function loadCmdFromType($_type) {
     if ('' != $this->getConfiguration('geoloc', '')) {
-      $this->loadCmdFromConf('alerts', 'current');
-      $this->loadCmdFromConf('airquality', 'current');
-      $this->loadCmdFromConf('airquality', 'forecast1');
-      $this->loadCmdFromConf('airquality', 'forecast2');
-      $this->loadCmdFromConf('airquality', 'forecast24');
-      $this->loadCmdFromConf('energy', 'daily0');
-      $this->loadCmdFromConf('energy', 'daily1');
-      $this->loadCmdFromConf('energy', 'daily2');
-      $this->loadCmdFromConf('energy', 'daily3');
-      $this->loadCmdFromConf('weather', 'current');
-      $this->loadCmdFromConf('weather', 'daily0');
-      $this->loadCmdFromConf('weather', 'daily1');
-      $this->loadCmdFromConf('weather', 'daily2');
-      $this->loadCmdFromConf('weather', 'daily3');
-      $this->loadCmdFromConf('weather', 'hourly1');
-      $this->loadCmdFromConf('weather', 'hourly2');
-      $this->loadCmdFromConf('weather', 'hourly3');
-      $this->loadCmdFromConf('weather', 'hourly4');
-      $this->loadCmdFromConf('weather', 'hourly5');
-      $this->loadCmdFromConf('weather', 'hourly6');
-      $this->loadCmdFromConf('ag', 'daily0');
-      $this->loadCmdFromConf('ag', 'daily1');
-      $this->loadCmdFromConf('ag', 'daily2');
-      $this->loadCmdFromConf('ag', 'daily3');
-      $this->setConfiguration('version','42');
-      $this->save();
+      if ($_type == 'current') {
+        $this->loadCmdFromConf('alerts', 'current');
+        $this->loadCmdFromConf('airquality', 'current');
+        $this->loadCmdFromConf('weather', 'current');
+      }
+      if ($_type == 'aqi') {
+        $this->loadCmdFromConf('airquality', 'forecast1');
+        $this->loadCmdFromConf('airquality', 'forecast2');
+        $this->loadCmdFromConf('airquality', 'forecast24');
+      }
+      if ($_type == 'energy') {
+        $this->loadCmdFromConf('energy', 'daily0');
+        $this->loadCmdFromConf('energy', 'daily1');
+        $this->loadCmdFromConf('energy', 'daily2');
+        $this->loadCmdFromConf('energy', 'daily3');
+      }
+      if ($_type == 'hourly') {
+        $this->loadCmdFromConf('weather', 'hourly1');
+        $this->loadCmdFromConf('weather', 'hourly2');
+        $this->loadCmdFromConf('weather', 'hourly3');
+        $this->loadCmdFromConf('weather', 'hourly4');
+        $this->loadCmdFromConf('weather', 'hourly5');
+        $this->loadCmdFromConf('weather', 'hourly6');
+      }
+      if ($_type == 'daily') {
+        $this->loadCmdFromConf('weather', 'daily0');
+        $this->loadCmdFromConf('weather', 'daily1');
+        $this->loadCmdFromConf('weather', 'daily2');
+        $this->loadCmdFromConf('weather', 'daily3');
+      }
+      if ($_type == 'ag') {
+        $this->loadCmdFromConf('ag', 'daily0');
+        $this->loadCmdFromConf('ag', 'daily1');
+        $this->loadCmdFromConf('ag', 'daily2');
+        $this->loadCmdFromConf('ag', 'daily3');
+      }
     } else {
       log::add('weatherbit', 'error', 'geoloc non saisie');
     }
   }
-
-  public function postAjax() {
-    if ($this->getIsEnable() && ($this->getConfiguration('version') != '42')) {
-      $time = time() + 90;
-      $cron = cron::byClassAndFunction('weatherbit', 'cronTrigger', array('weatherbit_id' => $this->getId()));
-      if (!is_object($cron)) {
-        $cron = new cron();
-        $cron->setClass('weatherbit');
-        $cron->setFunction('cronTrigger');
-        $cron->setOption(array('weatherbit_id' => $this->getId()));
-      }
-      $cron->setSchedule(date('i', $time) . ' ' . date('H', $time) . ' ' . date('d', $time) . ' ' . date('m', $time) . ' * ' . date('Y', $time));
-      $cron->setOnce(1);
-      $cron->save();
-    }
-  }
-
 
   public function getInformations() {
     if ($this->getConfiguration('geoloc', 'none') == 'none') {

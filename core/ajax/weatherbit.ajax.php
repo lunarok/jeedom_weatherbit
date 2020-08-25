@@ -24,6 +24,15 @@ try {
     throw new Exception(__('401 - Accès non autorisé', __FILE__));
   }
 
+  if (init('action') == 'createcmd') {
+    $eqLogic = eqLogic::byId(init('id'));
+    if (!is_object($eqLogic)) {
+      return true;
+    }
+    $eqLogic->loadCmdFromType(init('type'));
+    ajax::success();
+  }
+
   if (init('action') == 'loadingData') {
     if (init('value') == '0') {
       foreach (eqLogic::byType('weatherbit', true) as $eqLogic) {
